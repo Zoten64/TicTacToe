@@ -1,39 +1,137 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Tic Tac Toe
+**Impossible base game and an extra customizeable page**
 
-Welcome,
+## [Link to website (Come back later)]()
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+## Table of Contents:
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+* [Goals and target audience](#goals-and-target-audience)
+* [Design](#design)
+* [User stories](#user-stories)
+* [Features](#features)
+    * [Sitewide](#sitewide)
+    * [Home page](#home-page)
+    * [Care Guide Page](#care-guide-page)
+    * [Our Leos Page](#our-leos-page)
+    * [Rescue page](#rescue-page)
+    * [About us page](#about-us-page)
+    * [Other](#other)
+* [Bugs and fixes](#bugs-and-fixes)
+* [Technologies and tools](#technologies-and-tools)
+* [Wireframes](#wireframes)
+* [Validation and testing](#validation-and-testing)
+* [Deployment](#deployment)
+* [Credits](#credits)
 
-## Codeanywhere Reminders
+## Goals and target audience
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
 
-`python3 -m http.server`
+## Design
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+## User stories
 
-`http_server`
+1. As a player I want to play a tic tac toe game against an ai so that I can challenge myself
+2. As a player I want the game to have a nice layout that is easy to understand
+3. As a mobile user I want the website to be optimized for mobile to make it easier to navigate
+4. As a desktop user I want the website to be optimized for desktop to make it easier to navigate
+5. As a visually impaired user I want the website to be accessible so that I can also play
+6. As a player I want difficulty settings
+7. As a player I want customizeability
+8. As a player I want to have fun playing 
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+## Features
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## Bugs and fixes
 
-To log into the Heroku toolbelt CLI:
+| Bug  | Fix |
+| ------------- | ------------- |
+| Placeholder  | Placeholder  |
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## Technologies and tools
+**Languages**
+- HTML
+- CSS
+- Javascript
 
----
+**Tools**
+- Git/github
+- Visual Studio Code
+- Figma
+- Firefox dev tools
+- Chrome dev tools (Briefly)
 
-Happy coding!
+
+## Wireframes
+
+<details><summary>Impossible TicTacToe</summary>
+<img src="documentation/wireframes/Impossible_tictactoe.png">
+</details>
+<details><summary>Customizeable TicTacToe</summary>
+<img src="documentation/wireframes/customizeable_tictactoe.png">
+</details>
+
+## Validation and testing
+**HTML**
+
+
+**CSS**
+
+
+**Javascript**
+
+
+**Wave accessibility**
+
+
+**Lighthouse performance**
+
+
+**Other tests**
+
+
+**Browsers tested**
+
+
+**Testing Devices**
+
+
+**Testing user stories**
+
+
+## Deployment
+
+**Deploying and accessing the website on github pages**
+
+Deployed on github pages. [Link to website (Come back later)]()
+The steps taken to deploy is:
+- Go to the repository
+- Find the settings tab
+- Go to pages
+- Click source and choose "Deploy from branch"
+- Choose Main as the branch and click save
+- Wait a few minutes while github compiles the page
+- Click the link at the top of the page to go to your website
+
+**How to fork the project**
+
+- Navigate to the github repository (You're probably here already)
+- In the right corner click fork and choose a name
+
+**How to clone the project**
+
+Prerequisities:
+
+- Have git downloaded and configured
+
+steps:
+
+- Go to the repository (You're probably here already)
+- Click the code button
+- Copy the url
+- Open git and change the directory to the parent directory that you want the project to clone to
+- Write "git clone [the link you just copied]", in this case "git clone https://github.com/Zoten64/TicTacToe.git"
+
+## Credits
