@@ -1,7 +1,7 @@
 # Tic Tac Toe
 **Impossible base game and an extra customizeable page**
 
-## [Link to website (Come back later)]()
+## [Link to website](https://zoten64.github.io/TicTacToe/)
 
 ## Table of Contents:
 
@@ -105,7 +105,7 @@
 
 **Deploying and accessing the website on github pages**
 
-Deployed on github pages. [Link to website (Come back later)]()
+Deployed on github pages. [Link to website](https://zoten64.github.io/TicTacToe/)
 The steps taken to deploy is:
 - Go to the repository
 - Find the settings tab
