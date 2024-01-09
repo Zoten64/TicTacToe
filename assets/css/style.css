@@ -5,4 +5,20 @@
 /*These styles will apply to all, but are also easy to override*/
 * {
     font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/*General styles*/
+h1{
+    font-size: 4em;
+    font-weight: bold;
+    text-align: center;
+}
+
+h2{
+    font-size: 1.5em;
+    font-weight: normal;
+    text-align: center;
 }
