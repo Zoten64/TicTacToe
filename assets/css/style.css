@@ -21,13 +21,13 @@ body{
 }
 
 h1{
-    font-size: 4em;
+    font-size: 2em;
     font-weight: bold;
     text-align: center;
 }
 
 h2, p{
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: normal;
     text-align: center;
 }
@@ -59,7 +59,6 @@ main{
 /*Game*/
 .game-grid-item{
     border: 2px solid black;
-    background-color: white;
 }
 
 /*These styles are used to remove the outer borders of the grid. See the html*/
@@ -80,10 +79,10 @@ main{
 }
 
 #game{
-    padding: 2.5em;
+    padding: 1em;
     aspect-ratio: 1/1;
     background-color: rgb(141, 141, 141);
-    border-radius: 50px;
+    border-radius: 40px;
 }
 
 #game-grid{
@@ -95,7 +94,7 @@ main{
     grid-template-rows: 1fr 1fr 1fr;
 
     border-radius: 30px;
-    padding: 1em;
+    padding: 0.5em;
     background-color: white;
 }
 
@@ -107,21 +106,10 @@ main{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     margin-top: 2em;
-    padding: 2em 1.5em;
+    padding: 1em;
     border-radius: 40px;
 }
 
-#wins{
-    color: green;
-}
-
-#draws{
-    color: yellow;
-}
-
-#losses{
-    color: red;
-}
 
 /*Footer*/
 
@@ -136,9 +124,42 @@ footer p a{
     color: black;
 }
 
-/*Media Query: Tablets and larger (768px and up)*/
-@media screen and (min-width: 768px) {
+/*Media Query: medium sized phones and up (375px and up)*/
+/*The site has been modified on smaller phones to make buttons easier to press in exchange of style*/
+@media screen and (min-width: 375px) {
+    /*header*/
+    h1{
+        font-size: 4em;
+    }
+    
+    h2, p{
+        font-size: 1.5em;
+    }
+
+    /*Main*/
+
+    #game{
+        padding: 2em;
+        border-radius: 50px;
+    }
+
+    #game-grid{
+        padding: 1em;
+    }
+
+    #score{
+        padding: 1.5em;
+    }
+
+    /*Footer*/
     footer p a {
         display: inline;
+    }
+}
+
+/*Media Query: Laptops (992px and up)*/
+@media screen and (min-width: 992px) {
+    #game{
+        padding: 3em;
     }
 }
