@@ -8,6 +8,8 @@
     margin: 0;
     padding: 0;
     border: 0;
+
+    box-sizing: border-box;
 }
 
 /*General styles*/
@@ -22,3 +24,44 @@ h2{
     font-weight: normal;
     text-align: center;
 }
+
+
+/*Header*/
+header{
+    margin: 2em;
+}
+
+/*Main*/
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-grid-item{
+    text-align: center;
+    text-justify: center;
+
+    border: 1px solid black;
+}
+
+#game{
+    margin: 2em 0;
+    padding: 2em;
+    width: 80%;
+    max-width: 660px;
+    aspect-ratio: 1/1;
+}
+
+#game-grid{
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+
+/*Footer*/
