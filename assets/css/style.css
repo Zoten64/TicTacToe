@@ -10,6 +10,11 @@
     border: 0;
 
     box-sizing: border-box;
+
+    --background-color: white;
+    --accent-color: #b1b1b1;
+    --text-color: #0e0e0e;
+    --text-color-lighter: #202020;
 }
 
 /*General styles*/
@@ -24,12 +29,14 @@ h1{
     font-size: 2em;
     font-weight: bold;
     text-align: center;
+    color: var(--text-color);
 }
 
 h2, p{
     font-size: 1em;
     font-weight: normal;
     text-align: center;
+    color: var(--text-color-lighter);
 }
 
 
@@ -58,7 +65,7 @@ main{
 
 /*Game*/
 .game-grid-item{
-    border: 2px solid black;
+    border: 2px solid var(--text-color);
 }
 
 /*These styles are used to remove the outer borders of the grid. See the html*/
@@ -81,7 +88,7 @@ main{
 #game{
     padding: 1em;
     aspect-ratio: 1/1;
-    background-color: rgb(141, 141, 141);
+    background-color: var(--accent-color);
     border-radius: 40px;
 }
 
@@ -95,13 +102,13 @@ main{
 
     border-radius: 30px;
     padding: 0.5em;
-    background-color: white;
+    background-color: var(--background-color);
 }
 
 /*Tally area*/
 
 #score{
-    background-color: rgb(141, 141, 141);
+    background-color: var(--accent-color);
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -121,7 +128,7 @@ footer{
 footer p a{
     display: block;
     font-weight: bold;
-    color: black;
+    color: var(--text-color);
 }
 
 /*Media Query: medium sized phones and up (375px and up)*/
