@@ -40,18 +40,36 @@ main{
 }
 
 .game-grid-item{
-    text-align: center;
-    text-justify: center;
+    border: 2px solid black;
+    background-color: white;
+}
 
-    border: 1px solid black;
+/*These styles are used to remove the outer borders of the grid. See the html*/
+.no-top-border{
+    border-top: 0;
+}
+
+.no-left-border{
+    border-left: 0;
+}
+
+.no-right-border{
+    border-right: 0;
+}
+
+.no-bottom-border{
+    border-bottom: 0;
 }
 
 #game{
     margin: 2em 0;
-    padding: 2em;
-    width: 80%;
+    padding: 2.5em;
+    width: 90%;
     max-width: 660px;
     aspect-ratio: 1/1;
+
+    background-color: rgb(141, 141, 141);
+    border-radius: 50px;
 }
 
 #game-grid{
@@ -61,7 +79,10 @@ main{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-}
 
+    border-radius: 30px;
+    padding: 1em;
+    background-color: white;
+}
 
 /*Footer*/
