@@ -19,7 +19,7 @@ h1{
     text-align: center;
 }
 
-h2{
+h2, p{
     font-size: 1.5em;
     font-weight: normal;
     text-align: center;
@@ -39,6 +39,14 @@ main{
     align-items: center;
 }
 
+
+#game-score-container{
+    width: 90%;
+    max-width: 660px;
+    margin: 2em 0;
+}
+
+/*Game*/
 .game-grid-item{
     border: 2px solid black;
     background-color: white;
@@ -62,12 +70,8 @@ main{
 }
 
 #game{
-    margin: 2em 0;
     padding: 2.5em;
-    width: 90%;
-    max-width: 660px;
     aspect-ratio: 1/1;
-
     background-color: rgb(141, 141, 141);
     border-radius: 50px;
 }
@@ -83,6 +87,30 @@ main{
     border-radius: 30px;
     padding: 1em;
     background-color: white;
+}
+
+/*Tally area*/
+
+#score{
+    background-color: rgb(141, 141, 141);
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 2em;
+    padding: 2em 1.5em;
+    border-radius: 40px;
+}
+
+#wins{
+    color: green;
+}
+
+#draws{
+    color: yellow;
+}
+
+#losses{
+    color: red;
 }
 
 /*Footer*/

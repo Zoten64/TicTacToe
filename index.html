@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,32 +18,35 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
+
 <body>
-    
+
     <header>
         <h1>Impossible TicTacToe</h1>
         <h2>You can't win</h2>
     </header>
     <main>
-
-        <div id="game">
-            <!--Each grid item represents a square. Classes used to remove borders on some sides-->
-            <div id="game-grid">
-                <div class="game-grid-item no-top-border no-left-border"></div>
-                <div class="game-grid-item no-top-border"></div>
-                <div class="game-grid-item no-top-border no-right-border"></div>
-                <div class="game-grid-item no-left-border"></div>
-                <div class="game-grid-item"></div>
-                <div class="game-grid-item no-right-border"></div>
-                <div class="game-grid-item no-left-border no-bottom-border"></div>
-                <div class="game-grid-item no-bottom-border"></div>
-                <div class="game-grid-item no-bottom-border no-right-border"></div>
+        <div id="game-score-container">
+            <div id="game">
+                <!--Each grid item represents a square. Classes used to remove borders on some sides. 
+                grid-number = the number of the grid square. Will be used in JS later to determine which square has been pressed-->
+                <div id="game-grid">
+                    <div grid-number="1" class="game-grid-item no-top-border no-left-border"></div>
+                    <div grid-number="2" class="game-grid-item no-top-border"></div>
+                    <div grid-number="3" class="game-grid-item no-top-border no-right-border"></div>
+                    <div grid-number="4" class="game-grid-item no-left-border"></div>
+                    <div grid-number="5" class="game-grid-item"></div>
+                    <div grid-number="6" class="game-grid-item no-right-border"></div>
+                    <div grid-number="7" class="game-grid-item no-left-border no-bottom-border"></div>
+                    <div grid-number="8" class="game-grid-item no-bottom-border"></div>
+                    <div grid-number="9" class="game-grid-item no-bottom-border no-right-border"></div>
+                </div>
             </div>
-        </div>
-        <div id="score">
-            <p>Wins: <span id="wins"> 0 </span></p>
-            <p>Draws: <span id="draws"> 0 </span></p>
-            <p>Losses: <span id="losses"> 0 </span></p>
+            <div id="score">
+                <p>Wins: <span id="wins"> 0 </span></p>
+                <p>Draws: <span id="draws"> 0 </span></p>
+                <p>Losses: <span id="losses"> 0 </span></p>
+            </div>
         </div>
     </main>
     <footer>
@@ -52,4 +56,5 @@
     <!--Script placed at the bottom to load at the end to make sure all components load before the script.-->
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>
