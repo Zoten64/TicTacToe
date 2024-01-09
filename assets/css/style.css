@@ -52,7 +52,7 @@ main{
 
 #game-score-container{
     width: 90%;
-    max-width: 660px;
+    max-width: 500px;
     margin: 2em 0;
 }
 
@@ -124,3 +124,21 @@ main{
 }
 
 /*Footer*/
+
+footer{
+    text-align: center;
+    padding: 2em;
+}
+
+footer p a{
+    display: block;
+    font-weight: bold;
+    color: black;
+}
+
+/*Media Query: Tablets and larger (768px and up)*/
+@media screen and (min-width: 768px) {
+    footer p a {
+        display: inline;
+    }
+}
