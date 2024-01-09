@@ -13,6 +13,13 @@
 }
 
 /*General styles*/
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 h1{
     font-size: 4em;
     font-weight: bold;
@@ -37,6 +44,9 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    /*Makes sure that the main element takes up any empty space, pushing the footer to the bottom*/
+    flex: 1 0 auto;
 }
 
 
