@@ -68,6 +68,12 @@ main{
     border: 2px solid var(--text-color);
 }
 
+.game-grid-item p {
+    text-align: center;
+    font-size: 5.5em;
+    height: 100%;
+}
+
 /*These styles are used to remove the outer borders of the grid. See the html*/
 .no-top-border{
     border-top: 0;
