@@ -61,6 +61,7 @@ main{
     width: 90%;
     max-width: 500px;
     margin: 2em 0;
+    display: grid;
 }
 
 /*Game*/
@@ -123,6 +124,18 @@ main{
     border-radius: 40px;
 }
 
+#clear{
+    align-self: center;
+    margin: auto;
+    background-color: var(--accent-color);
+    width: 50%;
+    text-align: center;
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 40px;
+
+    font-size: 1.3em;
+}
 
 /*Footer*/
 
