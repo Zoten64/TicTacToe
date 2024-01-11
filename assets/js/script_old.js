@@ -1,3 +1,6 @@
+//This script is currently unused
+//This is here in favor of archiving it
+
 console.log("Connected!");
 
 // Global variables
@@ -8,7 +11,7 @@ const combinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3,
 let xCombinations = [];
 //The grid items O has claimed. O = AI
 let oCombinations = [];
-//Locks the board on win/loss/draw, requiring the board to be cleared
+//Locks the board on win/loss/draw
 let lockBoard = false;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -22,22 +25,12 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!lockBoard) {
                 let clickedItem = item.getAttribute("grid-number");
                 console.log(clickedItem)
-                //Adds an X to the clicked grid item if the grid item isn't already claimed to prevent overrides
+                //Adds an X to the clicked grid item
                 if (!oCombinations.includes(parseInt(clickedItem)) && !xCombinations.includes(parseInt(clickedItem))) {
                     document.getElementsByClassName("game-grid-item")[parseInt(clickedItem - 1)].children[0].innerText = "X";
-                    xCombinations.push(parseInt(clickedItem));
-
-                    //Checks who, if anyone, has won by passing the combinations into the function. Otherwise the game continues
-                    let checkedWin = checkWin(xCombinations, oCombinations);
-                    if (checkedWin == 0) {
-                        document.getElementById("losses").innerText = parseInt(document.getElementById("losses").innerText) + 1;
-                        lockBoard = true;
-                    } else if (checkedWin == 1) {
-                        document.getElementById("wins").innerText = parseInt(document.getElementById("wins").innerText) + 1;
-                        lockBoard = true;
-                    }
-
-                    bestMoveCalc();
+                    addXToCombo(clickedItem);
+                    checkWin();
+                    AITurn();
                 }
             }
         })
@@ -51,16 +44,25 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 /**
- * Checks if one of the combinations has been reached
- * Human = 1
- * AI = 0
+ * Adds the id of the grid clicked to the array that keeps
+ * track of the player's inputs
  */
-function checkWin(playerMoves, aiMoves) {
+function addXToCombo(clickedItem) {
+    xCombinations.push(parseInt(clickedItem));
+    console.log(`Player move: ${xCombinations}`);
+};
+
+/**
+ * Checks if one of the combinations has been reached
+ */
+function checkWin() {
     for (let combo of combinations) {
-        if (playerMoves.includes(combo[0]) && playerMoves.includes(combo[1]) && playerMoves.includes(combo[2])) {
-            return 1;
-        } else if (aiMoves.includes(combo[0]) && aiMoves.includes(combo[1]) && aiMoves.includes(combo[2])) {
-            return 0;
+        if (xCombinations.includes(combo[0]) && xCombinations.includes(combo[1]) && xCombinations.includes(combo[2])) {
+            document.getElementById("wins").innerText = parseInt(document.getElementById("wins").innerText) + 1;
+            lockBoard = true;
+        } else if (oCombinations.includes(combo[0]) && oCombinations.includes(combo[1]) && oCombinations.includes(combo[2])) {
+            document.getElementById("losses").innerText = parseInt(document.getElementById("losses").innerText) + 1;
+            lockBoard = true;
         }
     };
 
@@ -80,63 +82,17 @@ function draw() {
  */
 
 function clearBoard() {
-    //Temporary code used for testing
-    for (let i = 0; i < 9; i++) {
-        document.getElementsByClassName("game-grid-item")[i].children[0].innerText = "";
-    }
-
-    xCombinations = [2, 6, 9];
-    oCombinations = [4, 7, 8];
-
-    document.getElementsByClassName("game-grid-item")[1].children[0].innerText = "X";
-    document.getElementsByClassName("game-grid-item")[5].children[0].innerText = "X";
-    document.getElementsByClassName("game-grid-item")[8].children[0].innerText = "X";
-
-    document.getElementsByClassName("game-grid-item")[3].children[0].innerText = "O";
-    document.getElementsByClassName("game-grid-item")[6].children[0].innerText = "O";
-    document.getElementsByClassName("game-grid-item")[7].children[0].innerText = "O";
-
-    bestMoveCalc();
-
-    //Real code that will be used later
-    /*
     xCombinations.length = 0;
     oCombinations.length = 0;
     for (let i = 0; i < 9; i++) {
         document.getElementsByClassName("game-grid-item")[i].children[0].innerText = "";
-    }*/
+    }
 }
 
 
 // AI stuff
 
-function bestMoveCalc() {
-    let possibleMoves = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    //Ai = 0 
-    //Human = 1
-    let playerTurn = 0
 
-    for (let userMove of xCombinations) {
-        let index = possibleMoves.indexOf(userMove)
-        if (index != -1) {
-            possibleMoves.splice(index, 1);
-        }
-    };
-    for (let aiMove of oCombinations) {
-        let index = possibleMoves.indexOf(aiMove)
-        if (index != -1) {
-            possibleMoves.splice(index, 1);
-        }
-    };
-    miniMax(possibleMoves, playerTurn)
-}
-
-
-function miniMax(possibleMoves, playerTurn) {
-    for (let possibleMove of possibleMoves) {
-
-    }
-}
 
 //This code is commented out in favor of trying out a new way to calculate moves
 /**

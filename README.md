@@ -9,13 +9,6 @@
 * [Design](#design)
 * [User stories](#user-stories)
 * [Features](#features)
-    * [Sitewide](#sitewide)
-    * [Home page](#home-page)
-    * [Care Guide Page](#care-guide-page)
-    * [Our Leos Page](#our-leos-page)
-    * [Rescue page](#rescue-page)
-    * [About us page](#about-us-page)
-    * [Other](#other)
 * [Bugs and fixes](#bugs-and-fixes)
 * [Technologies and tools](#technologies-and-tools)
 * [Wireframes](#wireframes)
@@ -58,6 +51,7 @@
 | AI makes unlimited moves until it wins after implementing minimax algorithm | Add a "return false" if there is no winning move, stopping the execution of the function |
 | AI wins on combinations it shouldn't | The temporary array wasn't a proper copy |
 | AI do not recognize when a win is possible | The temporary list was all messed up. Use a more reliable way to clone an array using spread |
+| Player gains double points sometimes when reaching a board where 2 rows are considered wins | Fixed itself with some code cleanup |
 
 
 ## Technologies and tools
