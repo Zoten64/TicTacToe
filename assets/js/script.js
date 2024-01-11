@@ -23,11 +23,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 let clickedItem = item.getAttribute("grid-number");
                 console.log(clickedItem)
                 //Adds an X to the clicked grid item
-                document.getElementsByClassName("game-grid-item")[parseInt(clickedItem - 1)].children[0].innerText = "X";
-                addXToCombo(clickedItem);
-                checkWin();
-                AITurn();
-                checkWin();
+                if(!oCombinations.includes(parseInt(clickedItem))){
+                    document.getElementsByClassName("game-grid-item")[parseInt(clickedItem - 1)].children[0].innerText = "X";
+                    addXToCombo(clickedItem);
+                    checkWin();
+                    AITurn();
+                    checkWin();
+                }
             }
         })
     }
