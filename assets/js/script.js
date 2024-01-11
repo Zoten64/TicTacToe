@@ -3,12 +3,12 @@ console.log("Connected!");
 // Global variables
 
 //Possible win combinations
-let combinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
+const combinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
 //The grid items X has claimed
 let xCombinations = [];
 //The grid items O has claimed
 let oCombinations = [];
-
+//Locks the board on win/loss/draw
 let lockBoard = false;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let clickedItem = item.getAttribute("grid-number");
                 console.log(clickedItem)
                 //Adds an X to the clicked grid item
-                if (!oCombinations.includes(parseInt(clickedItem))) {
+                if (!oCombinations.includes(parseInt(clickedItem)) && !xCombinations.includes(parseInt(clickedItem))) {
                     document.getElementsByClassName("game-grid-item")[parseInt(clickedItem - 1)].children[0].innerText = "X";
                     addXToCombo(clickedItem);
                     checkWin();
@@ -88,7 +88,6 @@ function clearBoard() {
 function AITurn() {
     if (!lockBoard) {
         let possibleMoves = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
         //Code used from here: https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array-in-javascript
         for (userMove of xCombinations) {
             let index = possibleMoves.indexOf(userMove)

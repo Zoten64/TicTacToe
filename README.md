@@ -52,6 +52,8 @@
 | Player can override the AI moves| Add an if statement that checks if the move has been entered by the AI already | 
 | Throws "Uncaught TypeError: document.getElementsByClassName(...)[(move - 1)] is undefined" every time the player wins on a full board| Check is the board is locked before the AI can make a move |
 | Player gains double points when winning | Move the checkWin() function after the AI move to the AIMove function in order to make sure the player's win isn't checked twice per move |
+| Throws an error when the game ends in a draw | unfixed as of now |
+| User can override their own move | Add a check to make sure that the users move isn't already on the board |
 
 
 ## Technologies and tools
