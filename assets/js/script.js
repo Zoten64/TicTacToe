@@ -113,10 +113,13 @@ function AITurn() {
         //
         let move
 
-        let checkMove = checkPossibleAIWin(possibleMoves)
-        if (checkMove != false) {
-            move = checkMove;
-        } else {
+        let checkAIWIn = checkPossibleAIWin(possibleMoves)
+        let checkPlayerWin = checkPossiblePlayerWin(possibleMoves)
+        if (checkAIWIn != false) {
+            move = checkAIWIn;
+        } else if(checkPlayerWin != false){
+            move = checkPlayerWin;
+        } else{
             move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
         }
 
@@ -160,5 +163,18 @@ function checkPossibleAIWin(possibleMoves) {
  * Check if the player can win with a move on the board 
  */
 function checkPossiblePlayerWin(possibleMoves) {
-
+    for (let possibleMove of possibleMoves) {
+        let tempXCombinations = [...xCombinations]
+        tempXCombinations.push(possibleMove)
+        console.log(`tempXCombinations: ${tempXCombinations}`)
+        console.log(`Tested player move: ${possibleMove}`)
+        for (let combo of combinations) {
+            console.log(`Testing if ${possibleMove} added to ${tempXCombinations} is in: ${combo}`)
+            if (tempXCombinations.includes(combo[0]) && tempXCombinations.includes(combo[1]) && tempXCombinations.includes(combo[2])) {
+                console.log(`Player winning move found: ${possibleMove}`)
+                return possibleMove
+            }
+        };
+    }
+    return false
 }
