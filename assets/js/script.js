@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 addXToCombo(clickedItem);
                 checkWin();
                 AITurn();
+                checkWin();
             }
         })
     }
@@ -58,7 +59,8 @@ function checkWin() {
             document.getElementById("wins").innerText = parseInt(document.getElementById("wins").innerText) + 1;
             lockBoard = true;
         };
-        if (oCombinations.includes(combo[0]) && xCombinations.includes(combo[1]) && xCombinations.includes(combo[2])) {
+
+        if (oCombinations.includes(combo[0]) && oCombinations.includes(combo[1]) && oCombinations.includes(combo[2])) {
             document.getElementById("losses").innerText = parseInt(document.getElementById("losses").innerText) + 1;
             lockBoard = true;
         };
@@ -78,6 +80,9 @@ function clearBoard() {
 
 // AI stuff
 
+/**
+ * The ai move. Currently completely random.
+ */
 function AITurn() {
     let possibleMoves = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 

@@ -47,7 +47,8 @@
 
 | Bug  | Fix |
 | ------------- | ------------- |
-| Placeholder  | Placeholder  |
+| AI is able to win when a valid combo has not been achieved  | Forgot to change xCombination to oCombination in the check win section as it was copied and pasted |
+| Player can still make a move after the ai has won | Add checkWin() after the AI Move which locks the board |
 
 
 ## Technologies and tools
