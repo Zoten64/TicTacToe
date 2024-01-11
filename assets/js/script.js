@@ -4,9 +4,9 @@ console.log("Connected!");
 
 //Possible win combinations
 const combinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
-//The grid items X has claimed
+//The grid items X has claimed X = Player
 let xCombinations = [];
-//The grid items O has claimed
+//The grid items O has claimed. O = AI
 let oCombinations = [];
 //Locks the board on win/loss/draw
 let lockBoard = false;
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 function addXToCombo(clickedItem) {
     xCombinations.push(parseInt(clickedItem));
-    console.log(xCombinations);
+    console.log(`Player move: ${xCombinations}`);
 };
 
 /**
@@ -110,18 +110,55 @@ function AITurn() {
 
 
         //Code from here: https://stackoverflow.com/questions/5915096/get-a-random-item-from-a-javascript-array
-        let move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
+        //
+        let move
+
+        let checkMove = checkPossibleAIWin(possibleMoves)
+        if (checkMove != false) {
+            move = checkMove;
+        } else {
+            move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+        }
+
         console.log(`AI move: ${move}`)
         if (move == undefined) {
             draw();
-        } else{
-        document.getElementsByClassName("game-grid-item")[move - 1].children[0].innerText = "o";
-        oCombinations.push(move);
-        checkWin();}
+        } else {
+            document.getElementsByClassName("game-grid-item")[move - 1].children[0].innerText = "o";
+            oCombinations.push(move);
+            checkWin();
+        }
 
         //Debug stuff
         console.log(`Possible moves: ${possibleMoves}`)
 
         console.log(`AI total moves: ${oCombinations}`)
     }
+}
+
+/**
+ * Checks if a move on the board can guarantee an AI win
+ */
+function checkPossibleAIWin(possibleMoves) {
+    for (let possibleMove of possibleMoves) {
+        let tempOCombinations = [...oCombinations]
+        tempOCombinations.push(possibleMove)
+        console.log(`tempOCombinations: ${tempOCombinations}`)
+        console.log(`Tested move: ${possibleMove}`)
+        for (let combo of combinations) {
+            console.log(`Testing if ${possibleMove} added to ${tempOCombinations} is in: ${combo}`)
+            if (tempOCombinations.includes(combo[0]) && tempOCombinations.includes(combo[1]) && tempOCombinations.includes(combo[2])) {
+                console.log(`Move found: ${possibleMove}`)
+                return possibleMove
+            }
+        };
+    }
+    return false
+}
+
+/**
+ * Check if the player can win with a move on the board 
+ */
+function checkPossiblePlayerWin(possibleMoves) {
+
 }

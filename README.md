@@ -55,6 +55,9 @@
 | Throws an error when the game ends in a draw | Add a separate function that checks for draws and locks the board, preventing the ai from trying to make more moves |
 | User can override their own move | Add a check to make sure that the users move isn't already on the board |
 | The game counts wins/losses when the board is full as a draw | Check if the AI move is undefined before changing the draw counter. This also fixed the error thrown without having a seperate checker function |
+| AI makes unlimited moves until it wins after implementing minimax algorithm | Add a "return false" if there is no winning move, stopping the execution of the function |
+| AI wins on combinations it shouldn't | The temporary array wasn't a proper copy |
+| AI do not recognize when a win is possible | The temporary list was all messed up. Use a more reliable way to clone an array using spread |
 
 
 ## Technologies and tools
