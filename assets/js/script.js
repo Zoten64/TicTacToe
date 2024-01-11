@@ -33,8 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     }
 
-
-
     //When the clear button is pressed the board will be cleared
     document.getElementById("clear").addEventListener("click", function () {
         clearBoard();
@@ -59,19 +57,27 @@ function checkWin() {
         if (xCombinations.includes(combo[0]) && xCombinations.includes(combo[1]) && xCombinations.includes(combo[2])) {
             document.getElementById("wins").innerText = parseInt(document.getElementById("wins").innerText) + 1;
             lockBoard = true;
-        };
-
-        if (oCombinations.includes(combo[0]) && oCombinations.includes(combo[1]) && oCombinations.includes(combo[2])) {
+        } else if (oCombinations.includes(combo[0]) && oCombinations.includes(combo[1]) && oCombinations.includes(combo[2])) {
             document.getElementById("losses").innerText = parseInt(document.getElementById("losses").innerText) + 1;
             lockBoard = true;
-        };
-        
+        }
     };
+
+};
+
+/**
+ * Called when the game is a draw
+ */
+
+function draw() {
+    document.getElementById("draws").innerText = parseInt(document.getElementById("draws").innerText) + 1;
+    lockBoard = true;
 };
 
 /**
  * Clears the board
  */
+
 function clearBoard() {
     xCombinations.length = 0;
     oCombinations.length = 0;
@@ -101,15 +107,21 @@ function AITurn() {
                 possibleMoves.splice(index, 1);
             }
         };
+
+
         //Code from here: https://stackoverflow.com/questions/5915096/get-a-random-item-from-a-javascript-array
         let move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
+        console.log(`AI move: ${move}`)
+        if (move == undefined) {
+            draw();
+        } else{
         document.getElementsByClassName("game-grid-item")[move - 1].children[0].innerText = "o";
         oCombinations.push(move);
-        checkWin();
+        checkWin();}
 
         //Debug stuff
         console.log(`Possible moves: ${possibleMoves}`)
-        console.log(`AI move: ${move}`)
+
         console.log(`AI total moves: ${oCombinations}`)
     }
 }
