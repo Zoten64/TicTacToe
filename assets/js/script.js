@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     addXToCombo(clickedItem);
                     checkWin();
                     AITurn();
-                    checkWin();
                 }
             }
         })
@@ -66,6 +65,7 @@ function checkWin() {
             document.getElementById("losses").innerText = parseInt(document.getElementById("losses").innerText) + 1;
             lockBoard = true;
         };
+        
     };
 };
 
@@ -106,6 +106,7 @@ function AITurn() {
         let move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
         document.getElementsByClassName("game-grid-item")[move - 1].children[0].innerText = "o";
         oCombinations.push(move);
+        checkWin();
 
         //Debug stuff
         console.log(`Possible moves: ${possibleMoves}`)
