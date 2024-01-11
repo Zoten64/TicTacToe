@@ -69,7 +69,6 @@ function checkWin(playerMoves, aiMoves) {
 /**
  * Called when the game is a draw
  */
-
 function draw() {
     document.getElementById("draws").innerText = parseInt(document.getElementById("draws").innerText) + 1;
     lockBoard = true;
@@ -78,7 +77,6 @@ function draw() {
 /**
  * Clears the board
  */
-
 function clearBoard() {
     //Temporary code used for testing
     for (let i = 0; i < 9; i++) {
@@ -109,12 +107,11 @@ function clearBoard() {
 
 
 // AI stuff
-
+/**
+ * Calculates the best move with help of the minimax function
+ */
 function bestMoveCalc() {
     let possibleMoves = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    //Ai = 0 
-    //Human = 1
-    let playerTurn = 0
 
     for (let userMove of xCombinations) {
         let index = possibleMoves.indexOf(userMove)
@@ -128,13 +125,43 @@ function bestMoveCalc() {
             possibleMoves.splice(index, 1);
         }
     };
-    miniMax(possibleMoves, playerTurn)
+    console.log(miniMax(possibleMoves))
+
 }
 
+/**
+ * Determines the best move by calculating possible future moves. Recursive
+ */
+function miniMax(possibleMoves) {
+    //Clones of the lists that can be modified however without overriding the previous lists
+    let tempXCombinations = [...xCombinations]
+    let tempOCombinations = [...oCombinations]
+    let playerTurn = 0
 
-function miniMax(possibleMoves, playerTurn) {
     for (let possibleMove of possibleMoves) {
-
+        if(playerTurn == 0){
+            console.log(`Player: ${playerTurn}, calculated move ${possibleMove}`)
+            playerTurn = 1
+            
+            tempOCombinations.push(possibleMove)
+            if(checkWin(tempXCombinations, tempOCombinations) == 1){
+                return {score : -10}
+            } else if(checkWin(tempXCombinations, tempOCombinations) == 0){
+                return {score : 10}
+            } else{
+                return {score : 0}
+            }
+        } else {
+            playerTurn = 0
+            tempXCombinations.push(possibleMove)
+            if(checkWin(tempXCombinations, tempOCombinations) == 1){
+                return {score : -10}
+            } else if(checkWin(tempXCombinations, tempOCombinations) == 0){
+                return {score : 10}
+            } else{
+                return {score : 0}
+            }
+        }
     }
 }
 
