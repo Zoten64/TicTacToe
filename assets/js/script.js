@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let clickedItem = item.getAttribute("grid-number");
                 console.log(clickedItem)
                 //Adds an X to the clicked grid item
-                if(!oCombinations.includes(parseInt(clickedItem))){
+                if (!oCombinations.includes(parseInt(clickedItem))) {
                     document.getElementsByClassName("game-grid-item")[parseInt(clickedItem - 1)].children[0].innerText = "X";
                     addXToCombo(clickedItem);
                     checkWin();
@@ -86,27 +86,30 @@ function clearBoard() {
  * The ai move. Currently completely random.
  */
 function AITurn() {
-    let possibleMoves = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    if (!lockBoard) {
+        let possibleMoves = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-    //Code used from here: https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array-in-javascript
-    for (userMove of xCombinations) {
-        let index = possibleMoves.indexOf(userMove)
-        if (index != -1) {
-            possibleMoves.splice(index, 1);
-        }
-    };
-    for (aiMove of oCombinations) {
-        let index = possibleMoves.indexOf(aiMove)
-        if (index != -1) {
-            possibleMoves.splice(index, 1);
-        }
-    };
-    //Code from here: https://stackoverflow.com/questions/5915096/get-a-random-item-from-a-javascript-array
-    let move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
-    document.getElementsByClassName("game-grid-item")[move - 1].children[0].innerText = "o";
-    oCombinations.push(move);
+        //Code used from here: https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array-in-javascript
+        for (userMove of xCombinations) {
+            let index = possibleMoves.indexOf(userMove)
+            if (index != -1) {
+                possibleMoves.splice(index, 1);
+            }
+        };
+        for (let aiMove of oCombinations) {
+            let index = possibleMoves.indexOf(aiMove)
+            if (index != -1) {
+                possibleMoves.splice(index, 1);
+            }
+        };
+        //Code from here: https://stackoverflow.com/questions/5915096/get-a-random-item-from-a-javascript-array
+        let move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)]
+        document.getElementsByClassName("game-grid-item")[move - 1].children[0].innerText = "o";
+        oCombinations.push(move);
 
-    console.log(`Possible moves: ${possibleMoves}`)
-    console.log(`AI move: ${move}`)
-    console.log(`AI total moves: ${oCombinations}`)
+        //Debug stuff
+        console.log(`Possible moves: ${possibleMoves}`)
+        console.log(`AI move: ${move}`)
+        console.log(`AI total moves: ${oCombinations}`)
+    }
 }

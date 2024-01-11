@@ -50,6 +50,7 @@
 | AI is able to win when a valid combo has not been achieved  | Forgot to change xCombination to oCombination in the check win section as it was copied and pasted |
 | Player can still make a move after the ai has won | Add checkWin() after the AI Move which locks the board |
 | Player can override the AI moves| Add an if statement that checks if the move has been entered by the AI already | 
+| Throws "Uncaught TypeError: document.getElementsByClassName(...)[(move - 1)] is undefined" every time the player wins on a full board| Check is the board is locked before the AI can make a move |
 
 
 ## Technologies and tools
