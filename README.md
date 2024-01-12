@@ -52,6 +52,7 @@
 | AI wins on combinations it shouldn't | The temporary array wasn't a proper copy |
 | AI do not recognize when a win is possible | The temporary list was all messed up. Use a more reliable way to clone an array using spread |
 | Player gains double points sometimes when reaching a board where 2 rows are considered wins | Fixed itself with some code cleanup |
+| X does not show up on the screen when squares are pressed after a reset | The originalboard variable was being overriden in a function where it shouldn't have been. Made a copy of it and used that instead | 
 
 
 ## Technologies and tools

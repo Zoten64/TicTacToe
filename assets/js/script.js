@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let clickedItem = parseInt(item.getAttribute("grid-number"));
             console.log(clickedItem)
             let availableMoves = calcAvailableMoves(originalBoard, playerMoves, aiMoves);
-            console.log(`available moves; ${availableMoves}`)
+            console.log(`available moves; ${availableMoves}, playermoves: ${playerMoves}`)
 
             if (playerMove(availableMoves, clickedItem)) {
                 updateBoard()
@@ -59,19 +59,20 @@ function playerMove(availableMoves, move) {
  * Outputs an array of available moves from the 
  */
 function calcAvailableMoves(board, playerMoves, aiMoves) {
+    availableBoard = [...board]
     for (let userMove of playerMoves) {
-        let index = board.indexOf(userMove)
+        let index = availableBoard.indexOf(userMove)
         if (index != -1) {
-            board.splice(index, 1);
+            availableBoard.splice(index, 1);
         }
     };
     for (let aiMove of aiMoves) {
-        let index = board.indexOf(aiMove)
+        let index = availableBoard.indexOf(aiMove)
         if (index != -1) {
-            board.splice(index, 1);
+            availableBoard.splice(index, 1);
         }
     };
-    return board;
+    return availableBoard;
 }
 
 /**
@@ -98,4 +99,5 @@ function reset() {
     aiMoves.length = 0;
     currentBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     lockBoard = false
+    console.log(`Playermoves: ${playerMoves}, aiMoves: ${aiMoves}`)
 }
