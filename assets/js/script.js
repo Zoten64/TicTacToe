@@ -1,190 +1,101 @@
-//This script is currently unused
-//This is here in favor of archiving it
-
-console.log("Connected!");
-
 // Global variables
 
 //Possible win combinations
 const combinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
-//The grid items X has claimed X = Player
-let xCombinations = [];
-//The grid items O has claimed. O = AI
-let oCombinations = [];
-//Locks the board on win/loss/draw
+// What the current board looks like
+let currentBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+// Original board
+let originalBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+//List of player moves
+let playerMoves = []
+//List of ai moves
+let aiMoves = []
+//Locks the board on win/loss/draw, requiring the board to be cleared
 let lockBoard = false;
 
 document.addEventListener("DOMContentLoaded", function () {
+    //Output when everything has been loaded
     console.log("Loaded");
 
+    //Selects all the grid squared
     let gridItem = document.getElementsByClassName("game-grid-item");
-
+    //continuosly checks for input
     for (let item of gridItem) {
         item.addEventListener("click", function () {
-            //board needs to be cleared before you can click
-            if (!lockBoard) {
-                let clickedItem = item.getAttribute("grid-number");
-                console.log(clickedItem)
-                //Adds an X to the clicked grid item
-                if (!oCombinations.includes(parseInt(clickedItem)) && !xCombinations.includes(parseInt(clickedItem))) {
-                    document.getElementsByClassName("game-grid-item")[parseInt(clickedItem - 1)].children[0].innerText = "X";
-                    addXToCombo(clickedItem);
-                    checkWin();
-                    AITurn();
-                }
+            //The number of the square that was just clicked
+            let clickedItem = parseInt(item.getAttribute("grid-number"));
+            console.log(clickedItem)
+            let availableMoves = calcAvailableMoves(originalBoard, playerMoves, aiMoves);
+            console.log(`available moves; ${availableMoves}`)
+
+            if (playerMove(availableMoves, clickedItem)) {
+                updateBoard()
             }
+
+
         })
     }
 
     //When the clear button is pressed the board will be cleared
     document.getElementById("clear").addEventListener("click", function () {
-        clearBoard();
-        lockBoard = false
+        reset();
+        updateBoard();
     });
 })
 
 /**
- * Adds the id of the grid clicked to the array that keeps
- * track of the player's inputs
+ * Checks if the spot is available, pushes the move into a list of the player's moves
+ * and returns true. Otherwise undefined.
  */
-function addXToCombo(clickedItem) {
-    xCombinations.push(parseInt(clickedItem));
-    console.log(`Player move: ${xCombinations}`);
-};
+function playerMove(availableMoves, move) {
+    if (availableMoves.includes(move)) {
+        playerMoves.push(move)
+        console.log(playerMoves)
+        return true
+    }
+}
 
 /**
- * Checks if one of the combinations has been reached
+ * Outputs an array of available moves from the 
  */
-function checkWin() {
-    for (let combo of combinations) {
-        if (xCombinations.includes(combo[0]) && xCombinations.includes(combo[1]) && xCombinations.includes(combo[2])) {
-            document.getElementById("wins").innerText = parseInt(document.getElementById("wins").innerText) + 1;
-            lockBoard = true;
-        } else if (oCombinations.includes(combo[0]) && oCombinations.includes(combo[1]) && oCombinations.includes(combo[2])) {
-            document.getElementById("losses").innerText = parseInt(document.getElementById("losses").innerText) + 1;
-            lockBoard = true;
+function calcAvailableMoves(board, playerMoves, aiMoves) {
+    for (let userMove of playerMoves) {
+        let index = board.indexOf(userMove)
+        if (index != -1) {
+            board.splice(index, 1);
         }
     };
-
-};
-
-/**
- * Called when the game is a draw
- */
-
-function draw() {
-    document.getElementById("draws").innerText = parseInt(document.getElementById("draws").innerText) + 1;
-    lockBoard = true;
-};
+    for (let aiMove of aiMoves) {
+        let index = board.indexOf(aiMove)
+        if (index != -1) {
+            board.splice(index, 1);
+        }
+    };
+    return board;
+}
 
 /**
- * Clears the board
+ * Used to update the board on screen
  */
-
-function clearBoard() {
-    xCombinations.length = 0;
-    oCombinations.length = 0;
-    for (let i = 0; i < 9; i++) {
+function updateBoard() {
+    for (let i = 0; i < 9; i++){
         document.getElementsByClassName("game-grid-item")[i].children[0].innerText = "";
     }
-}
-
-
-// AI stuff
-
-
-
-//This code is commented out in favor of trying out a new way to calculate moves
-/**
- * The ai move. Currently completely random.
- */
-
-function AITurn() {
-    if (!lockBoard) {
-        let possibleMoves = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-        //Code used from here: https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array-in-javascript
-        for (let userMove of xCombinations) {
-            let index = possibleMoves.indexOf(userMove)
-            if (index != -1) {
-                possibleMoves.splice(index, 1);
-            }
-        };
-        for (let aiMove of oCombinations) {
-            let index = possibleMoves.indexOf(aiMove)
-            if (index != -1) {
-                possibleMoves.splice(index, 1);
-            }
-        };
-
-        let move
-        let bestScore = -Infinity;
-        let bestMove
-        let score = minimax(possibleMoves)
-
-        if(score > bestScore){
-            bestScore = score
-            bestMove = score
-        }
-
-        console.log(`AI move: ${bestMove}`)
-        if (bestMove == undefined) {
-            draw();
-        } else {
-            document.getElementsByClassName("game-grid-item")[bestMove - 1].children[0].innerText = "o";
-            oCombinations.push(bestMove);
-            checkWin();
-        }
-
-        //Debug stuff
-        console.log(`Possible moves: ${possibleMoves}`)
-
-        console.log(`AI total moves: ${oCombinations}`)
+    for (let move of playerMoves) {
+        document.getElementsByClassName("game-grid-item")[move - 1].children[0].innerText = "X";
     }
-}
-
-function minimax(possibleMoves){
-    return possibleMoves[0]
+    for (let move of aiMoves) {
+        document.getElementsByClassName("game-grid-item")[move - 1].children[0].innerText = "O";
+    }
+    console.log("The updateboard function has been run")
 }
 
 /**
- * Checks if a move on the board can guarantee an AI win
+ * resets the game
  */
-
-
-function checkPossibleAIWin(possibleMoves) {
-    for (let possibleMove of possibleMoves) {
-        let tempOCombinations = [...oCombinations]
-        tempOCombinations.push(possibleMove)
-        console.log(`tempOCombinations: ${tempOCombinations}`)
-        console.log(`Tested move: ${possibleMove}`)
-        for (let combo of combinations) {
-            console.log(`Testing if ${possibleMove} added to ${tempOCombinations} is in: ${combo}`)
-            if (tempOCombinations.includes(combo[0]) && tempOCombinations.includes(combo[1]) && tempOCombinations.includes(combo[2])) {
-                console.log(`Move found: ${possibleMove}`)
-                return possibleMove
-            }
-        };
-    }
-    return false
-}
-
-/**
- * Check if the player can win with a move on the board 
- */
-
-function checkPossiblePlayerWin(possibleMoves) {
-    for (let possibleMove of possibleMoves) {
-        let tempXCombinations = [...xCombinations]
-        tempXCombinations.push(possibleMove)
-        console.log(`tempXCombinations: ${tempXCombinations}`)
-        console.log(`Tested player move: ${possibleMove}`)
-        for (let combo of combinations) {
-            console.log(`Testing if ${possibleMove} added to ${tempXCombinations} is in: ${combo}`)
-            if (tempXCombinations.includes(combo[0]) && tempXCombinations.includes(combo[1]) && tempXCombinations.includes(combo[2])) {
-                console.log(`Player winning move found: ${possibleMove}`)
-                return possibleMove
-            }
-        };
-    }
-    return false
+function reset() {
+    playerMoves.length = 0;
+    aiMoves.length = 0;
+    currentBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    lockBoard = false
 }
