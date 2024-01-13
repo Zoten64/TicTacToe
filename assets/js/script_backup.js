@@ -1,7 +1,11 @@
+//This is a backup in case I mess up the code in the other script so badly it won't function anymore
+
 // Global variables
 
 //Possible win combinations
 const combinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
+// What the current board looks like
+let currentBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 // Original board
 let originalBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 //List of player moves
@@ -14,15 +18,6 @@ let lockBoard = false;
 let wins = 0
 let losses = 0
 let draws = 0
-
-let scoreLookup = {
-    loss: + 1,
-    win: -1,
-    draw: 0
-}
-
-let tempPlayerMoves = [];
-let tempAiMoves = [];
 
 document.addEventListener("DOMContentLoaded", function () {
     //Output when everything has been loaded
@@ -49,11 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         updateBoard();
                     }
                 }
-                if (checkWin(playerMoves, aiMoves, availableMoves) === "win") {
+                if(checkWin(playerMoves, aiMoves, availableMoves) === "win"){
                     ++wins
-                } else if (checkWin(playerMoves, aiMoves, availableMoves) === "loss") {
+                } else if (checkWin(playerMoves, aiMoves, availableMoves) === "loss"){
                     ++losses
-                } else if (checkWin(playerMoves, aiMoves, availableMoves) === "draw") {
+                } else if (checkWin(playerMoves, aiMoves, availableMoves) === "draw"){
                     ++draws
                 }
                 updateBoard()
@@ -115,7 +110,7 @@ function updateBoard() {
         document.getElementsByClassName("game-grid-item")[move - 1].children[0].innerText = "X";
     }
     for (let move of aiMoves) {
-        if (move == undefined) {
+        if(move == undefined){
             break
         }
         document.getElementsByClassName("game-grid-item")[move - 1].children[0].innerText = "O";
@@ -144,67 +139,11 @@ function reset() {
  * Called when the AI should make a move
  */
 function aiMove(availableMoves) {
-    // Assigned to new variable to prevent it from overwriting the first one
-    let possibleMoves = [...availableMoves];
-    let bestScore = -Infinity;
-    let score;
-    let bestMove;
-
-    for (move in possibleMoves) {
-        score = minimax(possibleMoves, 0, false);
-        tempPlayerMoves = [...playerMoves]
-        tempAiMoves = [...aiMoves]
-        if (score > bestScore) {
-            bestScore = score;
-            bestMove = move;
-        }
-    }
-    aiMoves.push(score);
+    let possibleMoves = availableMoves;
     //Placeholder move
-    /*
     let move = possibleMoves[0];
     aiMoves.push(move);
-    return move*/
-}
-
-let maxRecurs = 0
-
-function minimax(moves, depth, isMaximizing) {
-    let available = calcAvailableMoves(originalBoard, tempPlayerMoves, tempAiMoves);
-
-    let result = checkWin(tempPlayerMoves, tempAiMoves, available);
-    console.log(`result ${result}`)
-    ++maxRecurs;
-    if (result !== undefined || maxRecurs > 20) {
-        console.log("terminal state")
-        let score = scoreLookup[result];
-        return score;
-    }
-
-    if(isMaximizing){
-        let bestScore = -Infinity;
-        console.log("Maximizing")
-        for (let move in available){
-            tempAvailable = calcAvailableMoves(originalBoard, tempPlayerMoves, tempAiMoves);
-            let score = minimax(available, depth + 1, false);
-            score = Math.max(score, bestScore)
-            tempAiMoves.push(move)
-        }
-        return bestScore;
-    } else {
-        let bestScore = Infinity;
-        console.log("Minimizing")
-        for (let move in available){
-            tempAvailable = calcAvailableMoves(originalBoard, tempPlayerMoves, tempAiMoves);
-            console.log(available)
-            let score = minimax(available, depth + 1, true);
-            score = Math.min(score, bestScore)
-            tempPlayerMoves.push(move)
-            console.log(`move: ${move}`)
-        }
-        return bestScore;
-    }
-
+    return move
 }
 
 /**
