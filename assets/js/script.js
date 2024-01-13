@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (playerMove(availableMoves, clickedItem)) {
                 updateBoard()
             }
+            availableMoves = calcAvailableMoves(originalBoard, playerMoves, aiMoves);
+            aiMove(availableMoves);
+            updateBoard();
 
 
         })
@@ -54,6 +57,8 @@ function playerMove(availableMoves, move) {
         return true
     }
 }
+
+
 
 /**
  * Outputs an array of available moves from the 
@@ -100,4 +105,12 @@ function reset() {
     currentBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     lockBoard = false
     console.log(`Playermoves: ${playerMoves}, aiMoves: ${aiMoves}`)
+}
+
+function aiMove(availableMoves){
+    let possibleMoves = availableMoves;
+    //Placeholder move
+    let move = possibleMoves[0];
+    aiMoves.push(move);
+    return move
 }
