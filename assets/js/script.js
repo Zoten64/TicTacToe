@@ -21,6 +21,7 @@ let currentTheme = 0;
 //Difficulty list
 let difficulty = ["Impossible", "Hard", "Medium", "Easy", "Extremely easy"];
 let currentDifficulty = 0;
+let currentDifficultyString;
 
 document.addEventListener("DOMContentLoaded", function () {
     //Output when everything has been loaded
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         //Passes the available moves and clickedItem to the aiMove function to help it determine it's next more
                         //Gets a value from the function and pushes it to the aiMoves list 
-                        aiMoves.push(aiMove(availableMoves, clickedItem));
+                        aiMoves.push(aiMove(availableMoves, clickedItem, currentDifficultyString));
 
                         //Update the board
                         updateBoard();
@@ -79,13 +80,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     //Change theme button
-    document.getElementById("color").addEventListener("click", function (){
+    document.getElementById("color").addEventListener("click", function () {
         changeTheme();
     });
 
     //Change difficulty
-    document.getElementById("difficulty").addEventListener("click", function (){
-        changeDifficulty();
+    document.getElementById("difficulty").addEventListener("click", function () {
+        currentDifficultyString = changeDifficulty();
     });
 });
 
@@ -160,33 +161,48 @@ function reset() {
 /**
  * Called when the AI should make a move
  */
-function aiMove(availableMoves, recentPlayerMove) {
+function aiMove(availableMoves, recentPlayerMove, currentDiff) {
     //Gets the results from the checkers
     let possibleAiWin = findPossibleAiWin(availableMoves);
     let possiblePlayerWin = findPossiblePlayerWin(availableMoves);
+    //Determines the current difficulty
+    let currDiff = currentDiff;
+    console.log(`Current difficulty ${currDiff}`)
+    if (currDiff != "Extremely easy") {
+        console.log("Difficulty is not extremely easy")
+        //Checks if the checkers outputted a number
+        if (possibleAiWin != undefined) {
+            return possibleAiWin;
+        } else if (possiblePlayerWin != undefined) {
+            return possiblePlayerWin;
+        }
 
-    //Checks if the checkers outputted a number
-    if (possibleAiWin != undefined) {
-        return possibleAiWin;
-    } else if (possiblePlayerWin != undefined) {
-        return possiblePlayerWin;
+        if (currDiff == "Impossible" || currDiff == "Hard" || currDiff == "medium") {
+            let ratTacticsTest = ratTacticsDetection(availableMoves, recentPlayerMove, currDiff);
+            console.log("difficulty is not easy")
+            if (ratTacticsTest != undefined) {
+                return ratTacticsTest;
+            }
+        }
+
+        //Ai always picks middle if it's available to prevent the player from winning
+        if (availableMoves.includes(5) && currDiff != "Easy") {
+            console.log("difficulty is not easy")
+            return 5;
+        }
     }
 
-    let ratTacticsTest = ratTacticsDetection(availableMoves, recentPlayerMove);
-    if (ratTacticsTest != undefined) {
-        return ratTacticsTest;
+    if(currDiff == "Extremely easy"){
+        //code credit: https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
+        let move = availableMoves[(Math.floor(Math.random() * availableMoves.length))];
+        return move;
     }
-    
-    //Ai always picks middle if it's available to prevent the player from winning
-    if(availableMoves.includes(5)){
-        return 5;
-    }
-
     //In the event that a move is not found in the other checkers, the ai will pick the first available spot
     let move = availableMoves[0];
     aiMoves.push(move);
     console.log(aiMoves);
     return move;
+
 }
 
 /**
@@ -220,30 +236,34 @@ function findPossibleAiWin(possibleMoves) {
 /**
  * Detect tactics from the player that almost always guarantees a win
  */
-function ratTacticsDetection(possibleMoves, recentPlayerMove) {
+function ratTacticsDetection(possibleMoves, recentPlayerMove, difficulty) {
     //If the player places their X in a corner put the O in the middle if possible
-    if (corners.includes(recentPlayerMove)){
-        if (possibleMoves.includes(5)){
+    if (corners.includes(recentPlayerMove)) {
+        if (possibleMoves.includes(5)) {
             return 5;
-        } else{
+        } else {
             //Check if the third square from the player move is available, then put the O in there
-            if(possibleMoves.includes(recentPlayerMove + 3)){
+            if (possibleMoves.includes(recentPlayerMove + 3) && difficulty == "impossible") {
+                console.log("difficulty is not impossible")
                 return recentPlayerMove + 3;
             }
             //If not possible, put on the sides
-            for(let i of sides){
-                if(possibleMoves.includes(i)){
-                    return i;
+            if (difficulty != "medium") {
+                console.log("difficulty is not medium")
+                for (let i of sides) {
+                    if (possibleMoves.includes(i)) {
+                        return i;
+                    }
                 }
             }
         }
-        
+
     }
     //If the player has put their X on the sides, put the O on the 3rd square away. 
     //Results in a corner when the right or left side is taken, middle if the top is taken. 
     //Otherwise it defaults to the middle due to the code in the aiMove function
-    if(sides.includes(recentPlayerMove)){
-        if(possibleMoves.includes(recentPlayerMove + 3)){
+    if (sides.includes(recentPlayerMove) && difficulty == "impossible") {
+        if (possibleMoves.includes(recentPlayerMove + 3)) {
             return recentPlayerMove + 3;
         }
     }
@@ -270,11 +290,11 @@ function checkWin(player, ai, availableMoves) {
 /**
  * Changes the color theme
  */
-function changeTheme(){
+function changeTheme() {
     let oldTheme = themes[currentTheme];
     let newTheme = themes[currentTheme + 1];
     //Used to prevent the theme from completely removing all the colors
-    if (newTheme === undefined){
+    if (newTheme === undefined) {
         newTheme = themes[0];
     }
 
@@ -287,9 +307,9 @@ function changeTheme(){
     document.querySelector("footer").classList.replace(oldTheme, newTheme);
 
     //If the Current theme is the last in the list, loop it back to 0
-    if(currentTheme == (themes.length - 1)){
+    if (currentTheme == (themes.length - 1)) {
         currentTheme = 0;
-    } else{
+    } else {
         ++currentTheme
     }
 }
@@ -297,11 +317,11 @@ function changeTheme(){
 /**
  * Changes the difficulty
  */
-function changeDifficulty(){
+function changeDifficulty() {
     let oldDifficulty = difficulty[currentDifficulty];
     let newDifficulty = difficulty[currentDifficulty + 1];
     //Used to prevent the theme from completely removing all the colors
-    if (newDifficulty === undefined){
+    if (newDifficulty === undefined) {
         newDifficulty = difficulty[0];
     }
 
@@ -312,9 +332,11 @@ function changeDifficulty(){
 
 
     //If the Current theme is the last in the list, loop it back to 0
-    if(currentDifficulty == (difficulty.length - 1)){
+    if (currentDifficulty == (difficulty.length - 1)) {
         currentDifficulty = 0;
-    } else{
-        ++currentDifficulty
+    } else {
+        ++currentDifficulty;
     }
+
+    return newDifficulty;
 }
