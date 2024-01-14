@@ -15,6 +15,9 @@ let draws = 0;
 //References for the detectRatTactics function
 let corners = [1, 3, 7, 9];
 let sides = [2, 4, 6, 8];
+//Color theme list
+let themes = ["light-monochrome", "dark-monochrome"];
+let currentTheme = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
     //Output when everything has been loaded
@@ -70,6 +73,11 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("clear").addEventListener("click", function () {
         reset();
         updateBoard();
+    });
+
+    //Change theme button
+    document.getElementById("color").addEventListener("click", function (){
+        changeTheme();
     });
 });
 
@@ -246,5 +254,31 @@ function checkWin(player, ai, availableMoves) {
         } else if (ai.includes(combo[0]) && ai.includes(combo[1]) && ai.includes(combo[2])) {
             return "loss";
         }
+    }
+}
+
+//Customizeable tictactoe stuff
+
+function changeTheme(){
+    let oldTheme = themes[currentTheme];
+    let newTheme = themes[currentTheme + 1];
+    //Used to prevent the theme from completely removing all the colors
+    if (newTheme === undefined){
+        newTheme = themes[0];
+    }
+
+    console.log(`Switching from ${oldTheme} to ${newTheme}`)
+
+    //Switches the color theme related classname on all 4 elements
+    document.querySelector("body").classList.replace(oldTheme, newTheme);
+    document.querySelector("header").classList.replace(oldTheme, newTheme);
+    document.querySelector("main").classList.replace(oldTheme, newTheme);
+    document.querySelector("footer").classList.replace(oldTheme, newTheme);
+
+    //If the Current theme is the last in the list, loop it back to 0
+    if(currentTheme == (themes.length - 1)){
+        currentTheme = 0;
+    } else{
+        ++currentTheme
     }
 }

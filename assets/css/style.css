@@ -10,11 +10,22 @@
     border: 0;
 
     box-sizing: border-box;
+}
 
+/*Color themes*/
+
+.light-monochrome{
     --background-color: white;
     --accent-color: #b1b1b1;
     --text-color: #0e0e0e;
     --text-color-lighter: #202020;
+}
+
+.dark-monochrome{
+    --background-color: #1a1a1a;
+    --accent-color: #5a5a5a;
+    --text-color: #ffffff;
+    --text-color-lighter: #cccccc;
 }
 
 /*General styles*/
@@ -23,6 +34,12 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
+
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    /*Fading color between color theme changes*/
+    transition: background-color color 0.5s ease-in-out;
 }
 
 h1{
@@ -42,7 +59,9 @@ h2, p, button{
 
 /*Header*/
 header{
+    background-color: var(--background-color);
     margin: 2em;
+    transition: background-color color 0.5s ease-in-out;
 }
 
 /*Main*/
@@ -51,9 +70,12 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--background-color);
 
     /*Makes sure that the main element takes up any empty space, pushing the footer to the bottom*/
     flex: 1 0 auto;
+    /*Fading color between color theme changes*/
+    transition: background-color color 0.5s ease-in-out;
 }
 
 
@@ -67,6 +89,7 @@ main{
 
 /*Game*/
 .game-grid-item{
+    cursor: pointer;
     border: 2px solid var(--text-color);
 }
 
@@ -126,6 +149,8 @@ main{
 }
 
 #clear{
+    cursor: pointer;
+
     align-self: center;
     margin: auto;
     background-color: var(--accent-color);
@@ -137,11 +162,20 @@ main{
 
     font-size: 1.5em;
     font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+#clear:hover, #options div:hover{
+    transform: scale(1.1);
+
+    transition: all 0.2s ease-in-out;
 }
 
 /*Custom page stuff*/
 
 #options{
+    cursor: pointer;
+
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -157,6 +191,7 @@ main{
     border-radius: 20px;
 
     font-size: 1em;
+    transition: all 0.2s ease-in-out;
 }
 
 #options div h2{
@@ -166,8 +201,11 @@ main{
 /*Footer*/
 
 footer{
+    background-color: var(--background-color);
     text-align: center;
     padding: 2em;
+    /*Fading color between color theme changes*/
+    transition: background-color color 0.5s ease-in-out;
 }
 
 footer p a{
@@ -234,7 +272,7 @@ footer p a{
 
     #options div{
         height: 100%;
-        margin: 0.5em;
+        margin: 1em;
     }
 }
 
