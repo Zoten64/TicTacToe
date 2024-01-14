@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         item.addEventListener("click", function () {
             //The number of the square that was just clicked
-            let clickedItem = parseInt(item.getAttribute("grid-number"));
+            let clickedItem = parseInt(item.getAttribute("data-grid-number"));
 
             //Checks for available squares to prevent player from trying to claim a spot that is already taken
             let availableMoves = calcAvailableMoves(originalBoard, playerMoves, aiMoves);
@@ -161,9 +161,9 @@ function aiMove(availableMoves, recentPlayerMove) {
     if (ratTacticsTest != undefined) {
         return ratTacticsTest
     }
-
+    
     //Ai always picks middle if it's available to prevent the player from winning
-    if (availableMoves.includes(5)) {
+    if(availableMoves.includes(5)){
         return 5;
     }
 
@@ -206,17 +206,19 @@ function findPossibleAiWin(possibleMoves) {
  * Detect tactics from the player that almost always guarantees a win
  */
 function ratTacticsDetection(possibleMoves, recentPlayerMove) {
-    if (corners.includes(recentPlayerMove)) {
-
-        for (let i of sides) {
-            if (possibleMoves.includes(i)) {
-                return i;
+    if (corners.includes(recentPlayerMove)){
+        if (possibleMoves.includes(5)){
+            return 5;
+        } else{
+            for(let i of sides){
+                if(possibleMoves.includes(i)){
+                    return i;
+                }
             }
         }
+        
     }
-
 }
-
 
 /**
  * Checks in anyone has won. returns 0 if the human has won, 1 if the ai won, undefined if no one has won
