@@ -21,9 +21,6 @@ let scoreLookup = {
     draw: 0
 }
 
-let tempPlayerMoves = [];
-let tempAiMoves = [];
-
 document.addEventListener("DOMContentLoaded", function () {
     //Output when everything has been loaded
     console.log("Loaded");
@@ -45,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     if (checkWin(playerMoves, aiMoves, availableMoves) === undefined) {
                         availableMoves = calcAvailableMoves(originalBoard, playerMoves, aiMoves);
-                        aiMove(availableMoves);
+                        aiMove(availableMoves, clickedItem);
                         updateBoard();
                     }
                 }
@@ -137,29 +134,15 @@ function reset() {
     aiMoves.length = 0;
     currentBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     lockBoard = false
-    console.log(`Playermoves: ${playerMoves}, aiMoves: ${aiMoves}`)
 }
 
 /**
  * Called when the AI should make a move
  */
-function aiMove(availableMoves) {
-    // Assigned to new variable to prevent it from overwriting the first one
-    let possibleMoves = [...availableMoves];
-    let bestScore = -Infinity;
-    let score;
-    let bestMove;
+function aiMove(availableMoves, recentPlayerMove) {
+    findPossibleAiWin(availableMoves);
+    findPossiblePlayerWin(availableMoves);
 
-    for (move in possibleMoves) {
-        score = minimax(possibleMoves, 0, false);
-        tempPlayerMoves = [...playerMoves]
-        tempAiMoves = [...aiMoves]
-        if (score > bestScore) {
-            bestScore = score;
-            bestMove = move;
-        }
-    }
-    aiMoves.push(score);
     //Placeholder move
     /*
     let move = possibleMoves[0];
@@ -167,43 +150,38 @@ function aiMove(availableMoves) {
     return move*/
 }
 
-let maxRecurs = 0
-
-function minimax(moves, depth, isMaximizing) {
-    let available = calcAvailableMoves(originalBoard, tempPlayerMoves, tempAiMoves);
-
-    let result = checkWin(tempPlayerMoves, tempAiMoves, available);
-    console.log(`result ${result}`)
-    ++maxRecurs;
-    if (result !== undefined || maxRecurs > 20) {
-        console.log("terminal state")
-        let score = scoreLookup[result];
-        return score;
-    }
-
-    if(isMaximizing){
-        let bestScore = -Infinity;
-        console.log("Maximizing")
-        for (let move in available){
-            tempAvailable = calcAvailableMoves(originalBoard, tempPlayerMoves, tempAiMoves);
-            let score = minimax(available, depth + 1, false);
-            score = Math.max(score, bestScore)
-            tempAiMoves.push(move)
+/**
+ * Find a possible player win and put the O in there
+ */
+function findPossiblePlayerWin(possibleMoves){
+    for(let move of possibleMoves){
+        let tempPlayerMoves = [...playerMoves];
+        tempPlayerMoves.push(move);
+        if (checkWin(tempPlayerMoves, aiMoves, possibleMoves) == "win"){
+            console.log(`Found possible player win: ${move}`)
+            return move;
         }
-        return bestScore;
-    } else {
-        let bestScore = Infinity;
-        console.log("Minimizing")
-        for (let move in available){
-            tempAvailable = calcAvailableMoves(originalBoard, tempPlayerMoves, tempAiMoves);
-            console.log(available)
-            let score = minimax(available, depth + 1, true);
-            score = Math.min(score, bestScore)
-            tempPlayerMoves.push(move)
-            console.log(`move: ${move}`)
-        }
-        return bestScore;
     }
+}
+
+/**
+ * Find a possible ai win and put the O in there
+ */
+function findPossibleAiWin(possibleMoves){
+    for(let move of possibleMoves){
+        let tempAiMoves = [...aiMoves];
+        tempAiMoves.push(move);
+        if (checkWin(playerMoves, tempAiMoves, possibleMoves) == "loss"){
+            console.log(`Found possible ai win: ${move}`)
+            return move;
+        }
+    }
+}
+
+/**
+ * Detect tactics from the player that almost always guarantees a win
+ */
+function ratTacticsDetection(){
 
 }
 
