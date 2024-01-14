@@ -8,18 +8,11 @@ let originalBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 let playerMoves = []
 //List of ai moves
 let aiMoves = []
-//Locks the board on win/loss/draw, requiring the board to be cleared
-let lockBoard = false;
 //Scores
 let wins = 0
 let losses = 0
 let draws = 0
 
-let scoreLookup = {
-    loss: + 1,
-    win: -1,
-    draw: 0
-}
 
 document.addEventListener("DOMContentLoaded", function () {
     //Output when everything has been loaded
@@ -32,20 +25,31 @@ document.addEventListener("DOMContentLoaded", function () {
         item.addEventListener("click", function () {
             //The number of the square that was just clicked
             let clickedItem = parseInt(item.getAttribute("grid-number"));
-            console.log(clickedItem)
+
+            //Checks for available squares to prevent player from trying to claim a spot that is already taken
             let availableMoves = calcAvailableMoves(originalBoard, playerMoves, aiMoves);
-            console.log(`available moves; ${availableMoves}, playermoves: ${playerMoves}`)
+
+            //The scripts checks if there's a win before letting the player put an X anywhere
             if (checkWin(playerMoves, aiMoves, availableMoves) === undefined) {
                 if (playerMove(availableMoves, clickedItem)) {
                     console.log(checkWin(playerMoves, aiMoves, availableMoves))
+
+                    //Update the board
                     updateBoard();
 
+                    //The script checks after a win once again before the AI can make a move
                     if (checkWin(playerMoves, aiMoves, availableMoves) === undefined) {
                         availableMoves = calcAvailableMoves(originalBoard, playerMoves, aiMoves);
-                        aiMove(availableMoves, clickedItem);
+
+                        //Passes the available moves and clickedItem to the aiMove function to help it determine it's next more
+                        //Gets a value from the function and pushes it to the aiMoves list 
+                        aiMoves.push(aiMove(availableMoves, clickedItem));
+
+                        //Update the board
                         updateBoard();
                     }
                 }
+                //Adds to the scores if a win, loss or draw is achieved. Put here so the checkWin function can be reused
                 if (checkWin(playerMoves, aiMoves, availableMoves) === "win") {
                     ++wins
                 } else if (checkWin(playerMoves, aiMoves, availableMoves) === "loss") {
@@ -53,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else if (checkWin(playerMoves, aiMoves, availableMoves) === "draw") {
                     ++draws
                 }
+                //Update the board
                 updateBoard()
             }
         })
@@ -133,21 +138,32 @@ function reset() {
     playerMoves.length = 0;
     aiMoves.length = 0;
     currentBoard = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    lockBoard = false
 }
 
 /**
  * Called when the AI should make a move
  */
 function aiMove(availableMoves, recentPlayerMove) {
-    findPossibleAiWin(availableMoves);
-    findPossiblePlayerWin(availableMoves);
+    //Gets the results from the checkers
+    possibleAiWin = findPossibleAiWin(availableMoves);
+    possiblePlayerWin = findPossiblePlayerWin(availableMoves);
+
+    //Checks if the checkers outputted a number
+    if(possibleAiWin != undefined){
+        return possibleAiWin;
+    } else if (possiblePlayerWin != undefined){
+        return possiblePlayerWin;
+    }
+
+    
+
 
     //Placeholder move
-    /*
-    let move = possibleMoves[0];
+
+    let move = availableMoves[0];
     aiMoves.push(move);
-    return move*/
+    console.log(aiMoves)
+    return move
 }
 
 /**

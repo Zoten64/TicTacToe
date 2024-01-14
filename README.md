@@ -38,6 +38,8 @@
 
 ## Bugs and fixes
 
+Most of these bugs and fixes are now redundant as I rewrote the script to make it easier to maintain
+
 | Bug  | Fix |
 | ------------- | ------------- |
 | AI is able to win when a valid combo has not been achieved  | Forgot to change xCombination to oCombination in the check win section as it was copied and pasted |
@@ -53,8 +55,11 @@
 | AI do not recognize when a win is possible | The temporary list was all messed up. Use a more reliable way to clone an array using spread |
 | Player gains double points sometimes when reaching a board where 2 rows are considered wins | Fixed itself with some code cleanup |
 | X does not show up on the screen when squares are pressed after a reset | The originalboard variable was being overriden in a function where it shouldn't have been. Made a copy of it and used that instead |
-| aiMoves array turns into a boolean midway through execution |  | 
+ 
+Below are bugs that occured in the new script. Halfway through I scrapped the whole minimax algorithm idea in favor of a simple case by case calculation as I could not get it to work.
 
+| Bug  | Fix |
+| ------------- | ------------- |
 
 ## Technologies and tools
 **Languages**
