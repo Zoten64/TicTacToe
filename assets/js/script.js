@@ -18,6 +18,9 @@ let sides = [2, 4, 6, 8];
 //Color theme list
 let themes = ["light-monochrome", "dark-monochrome"];
 let currentTheme = 0;
+//Difficulty list
+let difficulty = ["Impossible", "Hard", "Medium", "Easy", "Extremely easy"];
+let currentDifficulty = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
     //Output when everything has been loaded
@@ -78,6 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
     //Change theme button
     document.getElementById("color").addEventListener("click", function (){
         changeTheme();
+    });
+
+    //Change difficulty
+    document.getElementById("difficulty").addEventListener("click", function (){
+        changeDifficulty();
     });
 });
 
@@ -259,6 +267,9 @@ function checkWin(player, ai, availableMoves) {
 
 //Customizeable tictactoe stuff
 
+/**
+ * Changes the color theme
+ */
 function changeTheme(){
     let oldTheme = themes[currentTheme];
     let newTheme = themes[currentTheme + 1];
@@ -280,5 +291,30 @@ function changeTheme(){
         currentTheme = 0;
     } else{
         ++currentTheme
+    }
+}
+
+/**
+ * Changes the difficulty
+ */
+function changeDifficulty(){
+    let oldDifficulty = difficulty[currentDifficulty];
+    let newDifficulty = difficulty[currentDifficulty + 1];
+    //Used to prevent the theme from completely removing all the colors
+    if (newDifficulty === undefined){
+        newDifficulty = difficulty[0];
+    }
+
+    console.log(`Switching from ${oldDifficulty} to ${newDifficulty}`)
+
+    //Switches the text on the difficulty button
+    document.getElementById("difficulty").children[1].innerText = newDifficulty;
+
+
+    //If the Current theme is the last in the list, loop it back to 0
+    if(currentDifficulty == (difficulty.length - 1)){
+        currentDifficulty = 0;
+    } else{
+        ++currentDifficulty
     }
 }
