@@ -56,6 +56,9 @@ h2, p, button{
     color: var(--text-color-lighter);
 }
 
+#current-page{
+    display: none;
+}
 
 /*Header*/
 header{

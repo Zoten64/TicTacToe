@@ -1,5 +1,6 @@
 // Global variables
-
+//What page the script is running on
+let currentPage;
 //Possible win combinations
 const combinations = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
 // Original board
@@ -26,7 +27,7 @@ let currentDifficultyString = "Impossible";
 document.addEventListener("DOMContentLoaded", function () {
     //Output when everything has been loaded
     console.log("Loaded");
-
+    currentPage = document.getElementById("current-page").innerText;
     //Selects all the grid squared
     let gridItem = document.getElementsByClassName("game-grid-item");
     for (let item of gridItem) {
@@ -73,21 +74,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    //When the clear button is pressed the board will be cleared
-    document.getElementById("clear").addEventListener("click", function () {
-        reset();
-        updateBoard();
-    });
+    
+        //When the clear button is pressed the board will be cleared
+        document.getElementById("clear").addEventListener("click", function () {
+            reset();
+            updateBoard();
+        });
+        //Only runs on the customizeable tic tac toe page
+        if (currentPage == "Custom") {
+        //Change theme button
+        document.getElementById("color").addEventListener("click", function () {
+            changeTheme();
+        });
 
-    //Change theme button
-    document.getElementById("color").addEventListener("click", function () {
-        changeTheme();
-    });
-
-    //Change difficulty
-    document.getElementById("difficulty").addEventListener("click", function () {
-        currentDifficultyString = changeDifficulty();
-    });
+        //Change difficulty
+        document.getElementById("difficulty").addEventListener("click", function () {
+            currentDifficultyString = changeDifficulty();
+        });
+    }
 });
 
 /**
@@ -198,7 +202,7 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
     }
 
     //If the difficulty is extremely easy the moves will be completely random
-    if(currDiff == "Extremely easy"){
+    if (currDiff == "Extremely easy") {
         //code credit: https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
         let move = availableMoves[(Math.floor(Math.random() * availableMoves.length))];
         return move;
