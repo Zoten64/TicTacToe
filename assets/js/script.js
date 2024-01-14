@@ -12,7 +12,9 @@ let aiMoves = []
 let wins = 0
 let losses = 0
 let draws = 0
-
+//References for the detectRatTactics function
+let corners = [1, 3, 7, 9]
+let sides = [2, 4, 6, 8]
 
 document.addEventListener("DOMContentLoaded", function () {
     //Output when everything has been loaded
@@ -149,13 +151,16 @@ function aiMove(availableMoves, recentPlayerMove) {
     possiblePlayerWin = findPossiblePlayerWin(availableMoves);
 
     //Checks if the checkers outputted a number
-    if(possibleAiWin != undefined){
+    if (possibleAiWin != undefined) {
         return possibleAiWin;
-    } else if (possiblePlayerWin != undefined){
+    } else if (possiblePlayerWin != undefined) {
         return possiblePlayerWin;
     }
 
-    
+    ratTacticsTest = ratTacticsDetection(availableMoves, recentPlayerMove);
+    if (ratTacticsTest != undefined) {
+        return ratTacticsTest
+    }
 
 
     //Placeholder move
@@ -169,11 +174,11 @@ function aiMove(availableMoves, recentPlayerMove) {
 /**
  * Find a possible player win and put the O in there
  */
-function findPossiblePlayerWin(possibleMoves){
-    for(let move of possibleMoves){
+function findPossiblePlayerWin(possibleMoves) {
+    for (let move of possibleMoves) {
         let tempPlayerMoves = [...playerMoves];
         tempPlayerMoves.push(move);
-        if (checkWin(tempPlayerMoves, aiMoves, possibleMoves) == "win"){
+        if (checkWin(tempPlayerMoves, aiMoves, possibleMoves) == "win") {
             console.log(`Found possible player win: ${move}`)
             return move;
         }
@@ -183,11 +188,11 @@ function findPossiblePlayerWin(possibleMoves){
 /**
  * Find a possible ai win and put the O in there
  */
-function findPossibleAiWin(possibleMoves){
-    for(let move of possibleMoves){
+function findPossibleAiWin(possibleMoves) {
+    for (let move of possibleMoves) {
         let tempAiMoves = [...aiMoves];
         tempAiMoves.push(move);
-        if (checkWin(playerMoves, tempAiMoves, possibleMoves) == "loss"){
+        if (checkWin(playerMoves, tempAiMoves, possibleMoves) == "loss") {
             console.log(`Found possible ai win: ${move}`)
             return move;
         }
@@ -197,8 +202,21 @@ function findPossibleAiWin(possibleMoves){
 /**
  * Detect tactics from the player that almost always guarantees a win
  */
-function ratTacticsDetection(){
-
+function ratTacticsDetection(possibleMoves, recentPlayerMove) {
+    if (corners.includes(recentPlayerMove)){
+        if (possibleMoves.includes(5)){
+            console.log("Rat tactics detected! Placing in the middle")
+            return 5;
+        } else{
+            for(let i of sides){
+                console.log("Rat tactics detected! Placing on the sides")
+                if(possibleMoves.includes(i)){
+                    return i;
+                }
+            }
+        }
+        
+    }
 }
 
 /**
