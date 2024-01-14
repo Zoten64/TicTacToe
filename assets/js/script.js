@@ -23,6 +23,11 @@ let currentTheme = 0;
 let difficulty = ["Impossible", "Hard", "Medium", "Easy", "Extremely easy"];
 let currentDifficulty = 0;
 let currentDifficultyString = "Impossible";
+//Win effects
+let winEffects = ["None", "Confetti", "Sound", "Both"];
+let currentWinEffect = 0;
+let currentWinEffectString = "None";
+
 
 document.addEventListener("DOMContentLoaded", function () {
     //Output when everything has been loaded
@@ -62,6 +67,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 //Adds to the scores if a win, loss or draw is achieved. Put here so the checkWin function can be reused
                 if (checkWin(playerMoves, aiMoves, availableMoves) === "win") {
                     ++wins;
+                    //Win effects
+                    //If confetti is enabled
+                    if(currentWinEffectString == "Confetti" || currentWinEffect == "Both"){
+                        confetti({
+                            spread: 180,
+                            particleCount: 150
+                        });
+                    };
                 } else if (checkWin(playerMoves, aiMoves, availableMoves) === "loss") {
                     ++losses;
                 } else if (checkWin(playerMoves, aiMoves, availableMoves) === "draw") {
@@ -74,14 +87,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-    
-        //When the clear button is pressed the board will be cleared
-        document.getElementById("clear").addEventListener("click", function () {
-            reset();
-            updateBoard();
-        });
-        //Only runs on the customizeable tic tac toe page
-        if (currentPage == "Custom") {
+
+    //When the clear button is pressed the board will be cleared
+    document.getElementById("clear").addEventListener("click", function () {
+        reset();
+        updateBoard();
+    });
+    //Only runs on the customizeable tic tac toe page
+    if (currentPage == "Custom") {
         //Change theme button
         document.getElementById("color").addEventListener("click", function () {
             changeTheme();
@@ -90,6 +103,11 @@ document.addEventListener("DOMContentLoaded", function () {
         //Change difficulty
         document.getElementById("difficulty").addEventListener("click", function () {
             currentDifficultyString = changeDifficulty();
+        });
+
+        //Change win effect
+        document.getElementById("win-effect").addEventListener("click", function () {
+            currentWinEffectString = changeWinEffect();
         });
     }
 });
@@ -331,14 +349,11 @@ function changeTheme() {
  * Changes the difficulty
  */
 function changeDifficulty() {
-    let oldDifficulty = difficulty[currentDifficulty];
     let newDifficulty = difficulty[currentDifficulty + 1];
     //Used to prevent the theme from completely removing all the colors
     if (newDifficulty === undefined) {
         newDifficulty = difficulty[0];
     }
-
-    console.log(`Switching from ${oldDifficulty} to ${newDifficulty}`)
 
     //Switches the text on the difficulty button
     document.getElementById("difficulty").children[1].innerText = newDifficulty;
@@ -352,4 +367,28 @@ function changeDifficulty() {
     }
 
     return newDifficulty;
+}
+
+/**
+ * Changes win effect
+ */
+function changeWinEffect() {
+    let newWinEffect = winEffects[currentWinEffect + 1];
+    //Used to prevent the theme from completely removing all the colors
+    if (newWinEffect === undefined) {
+        newWinEffect = winEffects[0];
+    }
+
+    //Switches the text on the difficulty button
+    document.getElementById("win-effect").children[1].innerText = newWinEffect;
+
+
+    //If the Current theme is the last in the list, loop it back to 0
+    if (currentWinEffect == (winEffects.length - 1)) {
+        currentWinEffect = 0;
+    } else {
+        ++currentWinEffect;
+    }
+
+    return newWinEffect;
 }

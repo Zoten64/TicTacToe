@@ -152,3 +152,5 @@ steps:
 - Write "git clone [the link you just copied]", in this case "git clone https://github.com/Zoten64/TicTacToe.git"
 
 ## Credits
+
+- Confetti Canvas by [catdad on github](https://github.com/catdad/canvas-confetti)
