@@ -210,6 +210,7 @@ function ratTacticsDetection(possibleMoves, recentPlayerMove) {
         if (possibleMoves.includes(5)){
             return 5;
         } else{
+            //Check if the third square from the player move is available, then put the O in there
             if(possibleMoves.includes(recentPlayerMove + 3)){
                 return recentPlayerMove + 3;
             }
