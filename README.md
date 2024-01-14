@@ -62,6 +62,8 @@ Below are bugs that occured in the new script. Halfway through I scrapped the wh
 | Bug  | Fix |
 | ------------- | ------------- |
 | The ai doesn't place a move in certain conditions | Make it default to the first available move |
+| The ai doesn't behave with the difficulty it's supposed to after implementing difficulties | Some of the comparisons for difficulty if statements were not capitalized and therefor did not run |
+| Difficulty is undefined on the main page | Make the currentDifficultyString = "Impossible" by default|
 
 
 ## Technologies and tools

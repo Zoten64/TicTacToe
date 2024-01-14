@@ -21,7 +21,7 @@ let currentTheme = 0;
 //Difficulty list
 let difficulty = ["Impossible", "Hard", "Medium", "Easy", "Extremely easy"];
 let currentDifficulty = 0;
-let currentDifficultyString;
+let currentDifficultyString = "Impossible";
 
 document.addEventListener("DOMContentLoaded", function () {
     //Output when everything has been loaded
@@ -165,9 +165,13 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
     //Gets the results from the checkers
     let possibleAiWin = findPossibleAiWin(availableMoves);
     let possiblePlayerWin = findPossiblePlayerWin(availableMoves);
+
     //Determines the current difficulty
     let currDiff = currentDiff;
+
     console.log(`Current difficulty ${currDiff}`)
+
+    //If the difficulty is not extremely easy this will run
     if (currDiff != "Extremely easy") {
         console.log("Difficulty is not extremely easy")
         //Checks if the checkers outputted a number
@@ -177,7 +181,8 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
             return possiblePlayerWin;
         }
 
-        if (currDiff == "Impossible" || currDiff == "Hard" || currDiff == "medium") {
+        //if the current difficulty is impossible, hard or medium this will run
+        if (currDiff == "Impossible" || currDiff == "Hard" || currDiff == "Medium") {
             let ratTacticsTest = ratTacticsDetection(availableMoves, recentPlayerMove, currDiff);
             console.log("difficulty is not easy")
             if (ratTacticsTest != undefined) {
@@ -185,13 +190,14 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
             }
         }
 
-        //Ai always picks middle if it's available to prevent the player from winning
+        //Ai always picks middle if it's available to prevent the player from winning. Only runs if the difficulty is not easy
         if (availableMoves.includes(5) && currDiff != "Easy") {
             console.log("difficulty is not easy")
             return 5;
         }
     }
 
+    //If the difficulty is extremely easy the moves will be completely random
     if(currDiff == "Extremely easy"){
         //code credit: https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
         let move = availableMoves[(Math.floor(Math.random() * availableMoves.length))];
@@ -207,6 +213,7 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
 
 /**
  * Find a possible player win and put the O in there
+ * checks through all the possible moves the player can make
  */
 function findPossiblePlayerWin(possibleMoves) {
     for (let move of possibleMoves) {
@@ -221,6 +228,7 @@ function findPossiblePlayerWin(possibleMoves) {
 
 /**
  * Find a possible ai win and put the O in there
+ * checks through all the possible moves the ai can make
  */
 function findPossibleAiWin(possibleMoves) {
     for (let move of possibleMoves) {
@@ -234,7 +242,8 @@ function findPossibleAiWin(possibleMoves) {
 }
 
 /**
- * Detect tactics from the player that almost always guarantees a win
+ * Detect tactics from the player that almost always guarantees a win. 
+ * The amount of tactics checked depends on difficulty
  */
 function ratTacticsDetection(possibleMoves, recentPlayerMove, difficulty) {
     //If the player places their X in a corner put the O in the middle if possible
@@ -243,12 +252,12 @@ function ratTacticsDetection(possibleMoves, recentPlayerMove, difficulty) {
             return 5;
         } else {
             //Check if the third square from the player move is available, then put the O in there
-            if (possibleMoves.includes(recentPlayerMove + 3) && difficulty == "impossible") {
-                console.log("difficulty is not impossible")
+            if (possibleMoves.includes(recentPlayerMove + 3) && difficulty == "Impossible") {
+                console.log("difficulty is impossible")
                 return recentPlayerMove + 3;
             }
             //If not possible, put on the sides
-            if (difficulty != "medium") {
+            if (difficulty != "Medium") {
                 console.log("difficulty is not medium")
                 for (let i of sides) {
                     if (possibleMoves.includes(i)) {
@@ -262,7 +271,7 @@ function ratTacticsDetection(possibleMoves, recentPlayerMove, difficulty) {
     //If the player has put their X on the sides, put the O on the 3rd square away. 
     //Results in a corner when the right or left side is taken, middle if the top is taken. 
     //Otherwise it defaults to the middle due to the code in the aiMove function
-    if (sides.includes(recentPlayerMove) && difficulty == "impossible") {
+    if (sides.includes(recentPlayerMove) && difficulty == "Impossible") {
         if (possibleMoves.includes(recentPlayerMove + 3)) {
             return recentPlayerMove + 3;
         }
