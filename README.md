@@ -154,3 +154,5 @@ steps:
 ## Credits
 
 - Confetti Canvas by [catdad on github](https://github.com/catdad/canvas-confetti)
+- Color palettes from [happy hues](https://www.happyhues.co/palettes/17)
+- Sound effect from [youtube](https://www.youtube.com/watch?v=0CqEKoy-fIQ)

@@ -15,17 +15,52 @@
 /*Color themes*/
 
 .light-monochrome{
-    --background-color: white;
-    --accent-color: #b1b1b1;
-    --text-color: #0e0e0e;
-    --text-color-lighter: #202020;
+    --background-color: #eff0f3;
+    --accent-color: #afb0b3;
+    --text-color: #0d0d0d;
+    --text-color-lighter: #2a2a2a;
 }
 
 .dark-monochrome{
-    --background-color: #1a1a1a;
-    --accent-color: #292929;
-    --text-color: #ffffff;
-    --text-color-lighter: #cccccc;
+    --background-color: #0f0e17;
+    --accent-color: #333141;
+    --text-color: #fffffe;
+    --text-color-lighter: #a7a9be;
+}
+
+.pink{
+    --background-color: #fef6e4;
+    --accent-color: #f582ae;
+    --text-color: #001858;
+    --text-color-lighter: #172c66;
+}
+
+.pink-dark{
+    --background-color: #0f0e17;
+    --accent-color: #e53170;
+    --text-color: #fffffe;
+    --text-color-lighter: #fffffe;
+}
+
+.forest{
+    --background-color: #004643;
+    --accent-color: #f9bc60;
+    --text-color: #fffffe;
+    --text-color-lighter: #fffffe;
+}
+
+.twilight{
+    --background-color: #232946;
+    --accent-color: #eebbc3;
+    --text-color: #fffffe;
+    --text-color-lighter: #fffffe;
+}
+
+.space{
+    --background-color: #16161a;
+    --accent-color: #7f5af0;
+    --text-color: #fffffe;
+    --text-color-lighter: #fffffe;
 }
 
 /*General styles*/

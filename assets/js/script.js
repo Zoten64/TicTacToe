@@ -17,7 +17,7 @@ let draws = 0;
 let corners = [1, 3, 7, 9];
 let sides = [2, 4, 6, 8];
 //Color theme list
-let themes = ["light-monochrome", "dark-monochrome"];
+let themes = ["light-monochrome", "dark-monochrome", "pink", "pink-dark", "forest", "twilight", "space"];
 let currentTheme = 0;
 //Difficulty list
 let difficulty = ["Impossible", "Hard", "Medium", "Easy", "Extremely easy"];
@@ -342,6 +342,7 @@ function changeTheme() {
     document.querySelector("main").classList.replace(oldTheme, newTheme);
     document.querySelector("footer").classList.replace(oldTheme, newTheme);
 
+    document.getElementById("color").children[1].innerText = newTheme;
     //If the Current theme is the last in the list, loop it back to 0
     if (currentTheme == (themes.length - 1)) {
         currentTheme = 0;
