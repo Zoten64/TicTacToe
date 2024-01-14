@@ -210,6 +210,9 @@ function ratTacticsDetection(possibleMoves, recentPlayerMove) {
         if (possibleMoves.includes(5)){
             return 5;
         } else{
+            if(possibleMoves.includes(recentPlayerMove + 3)){
+                return recentPlayerMove + 3;
+            }
             //If not possible, put on the sides
             for(let i of sides){
                 if(possibleMoves.includes(i)){

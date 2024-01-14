@@ -18,6 +18,7 @@
 
 ## Goals and target audience
 
+The goal of the project is to make an unbeatable TicTacToe ai as well as have a separate site with added functionality and advanced options including difficulty.
 
 ## Design
 
