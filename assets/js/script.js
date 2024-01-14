@@ -205,10 +205,12 @@ function findPossibleAiWin(possibleMoves) {
  * Detect tactics from the player that almost always guarantees a win
  */
 function ratTacticsDetection(possibleMoves, recentPlayerMove) {
+    //If the player places their X in a corner put the O in the middle if possible
     if (corners.includes(recentPlayerMove)){
         if (possibleMoves.includes(5)){
             return 5;
         } else{
+            //If not possible, put on the sides
             for(let i of sides){
                 if(possibleMoves.includes(i)){
                     return i;
@@ -216,6 +218,14 @@ function ratTacticsDetection(possibleMoves, recentPlayerMove) {
             }
         }
         
+    }
+    //If the player has put their X on the sides, put the O on the 3rd square away. 
+    //Results in a corner when the right or left side is taken, middle if the top is taken. 
+    //Otherwise it defaults to the middle due to the code in the aiMove function
+    if(sides.includes(recentPlayerMove)){
+        if(possibleMoves.includes(recentPlayerMove + 3)){
+            return recentPlayerMove + 3;
+        }
     }
 }
 

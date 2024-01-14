@@ -60,6 +60,8 @@ Below are bugs that occured in the new script. Halfway through I scrapped the wh
 
 | Bug  | Fix |
 | ------------- | ------------- |
+| The ai doesn't place a move in certain conditions | Make it default to the first available move |
+
 
 ## Technologies and tools
 **Languages**
