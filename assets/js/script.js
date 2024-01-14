@@ -27,6 +27,8 @@ let currentDifficultyString = "Impossible";
 let winEffects = ["None", "Confetti", "Sound", "Both"];
 let currentWinEffect = 0;
 let currentWinEffectString = "None";
+//Sound effect on win
+let winSound = new Audio("assets/audio/yippee.mp3")
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -69,12 +71,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     ++wins;
                     //Win effects
                     //If confetti is enabled
-                    if(currentWinEffectString == "Confetti" || currentWinEffect == "Both"){
+                    if(currentWinEffectString == "Confetti" || currentWinEffectString == "Both"){
                         confetti({
                             spread: 180,
                             particleCount: 150
                         });
                     };
+                    if (currentWinEffectString == "Sound" || currentWinEffectString == "Both"){
+                        winSound.play()
+                    }
                 } else if (checkWin(playerMoves, aiMoves, availableMoves) === "loss") {
                     ++losses;
                 } else if (checkWin(playerMoves, aiMoves, availableMoves) === "draw") {
