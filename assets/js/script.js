@@ -162,9 +162,12 @@ function aiMove(availableMoves, recentPlayerMove) {
         return ratTacticsTest
     }
 
+    //Ai always picks middle if it's available to prevent the player from winning
+    if (availableMoves.includes(5)) {
+        return 5;
+    }
 
-    //Placeholder move
-
+    //In the event that a move is not found in the other checkers, the ai will pick the first available spot
     let move = availableMoves[0];
     aiMoves.push(move);
     console.log(aiMoves)
@@ -203,21 +206,17 @@ function findPossibleAiWin(possibleMoves) {
  * Detect tactics from the player that almost always guarantees a win
  */
 function ratTacticsDetection(possibleMoves, recentPlayerMove) {
-    if (corners.includes(recentPlayerMove)){
-        if (possibleMoves.includes(5)){
-            console.log("Rat tactics detected! Placing in the middle")
-            return 5;
-        } else{
-            for(let i of sides){
-                console.log("Rat tactics detected! Placing on the sides")
-                if(possibleMoves.includes(i)){
-                    return i;
-                }
+    if (corners.includes(recentPlayerMove)) {
+
+        for (let i of sides) {
+            if (possibleMoves.includes(i)) {
+                return i;
             }
         }
-        
     }
+
 }
+
 
 /**
  * Checks in anyone has won. returns 0 if the human has won, 1 if the ai won, undefined if no one has won
