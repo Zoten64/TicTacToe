@@ -282,6 +282,8 @@ function ratTacticsDetection(possibleMoves, recentPlayerMove, difficulty) {
             if (possibleMoves.includes(recentPlayerMove + 3) && difficulty == "Impossible") {
                 console.log("difficulty is impossible")
                 return recentPlayerMove + 3;
+            } else if(possibleMoves.includes(recentPlayerMove - 3) && difficulty == "Impossible"){
+                return recentPlayerMove - 3;
             }
             //If not possible, put on the sides
             if (difficulty != "Medium") {
