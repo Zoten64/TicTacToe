@@ -253,7 +253,7 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
             return move;
         }
     //If the difficulty is extremely easy the moves will be completely random
-    } else if (currentDiff == "Easy") {
+    } else if (currentDiff == "Extremely easy") {
         //code credit: https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
         let move = availableMoves[(Math.floor(Math.random() * availableMoves.length))];
         return move;
