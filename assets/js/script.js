@@ -280,9 +280,10 @@ function ratTacticsDetection(possibleMoves, recentPlayerMove, difficulty) {
         } else {
             //Check if the third square from the player move is available, then put the O in there
             if (possibleMoves.includes(recentPlayerMove + 3) && difficulty == "Impossible") {
-                console.log("difficulty is impossible")
+                console.log("difficulty is impossible corers +")
                 return recentPlayerMove + 3;
             } else if(possibleMoves.includes(recentPlayerMove - 3) && difficulty == "Impossible"){
+                console.log("difficulty is impossible corners -")
                 return recentPlayerMove - 3;
             }
             //If not possible, put on the sides
@@ -301,8 +302,12 @@ function ratTacticsDetection(possibleMoves, recentPlayerMove, difficulty) {
     //Results in a corner when the right or left side is taken, middle if the top is taken. 
     //Otherwise it defaults to the middle due to the code in the aiMove function
     if (sides.includes(recentPlayerMove) && difficulty == "Impossible") {
+        console.log("difficulty is impossible sides")
         if (possibleMoves.includes(recentPlayerMove + 3)) {
             return recentPlayerMove + 3;
+        } else if(possibleMoves.includes(recentPlayerMove + 1)){
+            console.log(recentPlayerMove + 1)
+            return recentPlayerMove + 1
         }
     }
 }
