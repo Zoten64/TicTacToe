@@ -74,7 +74,7 @@ body{
     color: var(--text-color);
 
     /*Fading color between color theme changes*/
-    transition: background-color color 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 h1{
@@ -99,7 +99,7 @@ h2, p, button{
 header{
     background-color: var(--background-color);
     margin: 2em;
-    transition: background-color color 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 /*Main*/
@@ -113,7 +113,7 @@ main{
     /*Makes sure that the main element takes up any empty space, pushing the footer to the bottom*/
     flex: 1 0 auto;
     /*Fading color between color theme changes*/
-    transition: background-color color 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 
@@ -243,7 +243,7 @@ footer{
     text-align: center;
     padding: 2em;
     /*Fading color between color theme changes*/
-    transition: background-color color 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 footer p a{

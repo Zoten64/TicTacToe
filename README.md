@@ -93,36 +93,51 @@ Below are bugs that occured in the new script. Halfway through I scrapped the wh
 
 ## Validation and testing
 **HTML**
-<details><summary>Index</summary>
-<img src="documentation/validation/html_index.png">
+
+
+<details><summary>Main Page</summary>
+<img src="documentation\validation\html_index.png">
 </details>
-<details><summary>Index</summary>
-<img src="documentation/validation/html_custom.png">
+
+<details><summary>Customizeable TicTacToe</summary>
+<img src="documentation\validation\html_custom.png">
 </details>
+<br>
 
 **CSS**
 
+<details><summary>CSS</summary>
+<img src="documentation\validation\css_validation.png">
+</details>
+<br>
 
 **Javascript**
 
 
-**Wave accessibility**
+<details><summary>javascript</summary>
+<img src="documentation\validation\javascript_validation.png">
+Explaination: The undefined variable "confetti" is a function coming from another script. [Credits to the script here](#credits)
+</details>
+<br>
 
+
+**Wave accessibility**
+<br>
 
 **Lighthouse performance**
-
+<br>
 
 **Other tests**
-
+<br>
 
 **Browsers tested**
-
+<br>
 
 **Testing Devices**
-
+<br>
 
 **Testing user stories**
-
+<br>
 
 ## Deployment
 

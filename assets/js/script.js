@@ -28,7 +28,7 @@ let winEffects = ["None", "Confetti", "Sound", "Both"];
 let currentWinEffect = 0;
 let currentWinEffectString = "None";
 //Sound effect on win
-let winSound = new Audio("assets/audio/yippee.mp3")
+let winSound = new Audio("assets/audio/yippee.mp3");
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -49,8 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
             //The scripts checks if there's a win before letting the player put an X anywhere
             if (checkWin(playerMoves, aiMoves, availableMoves) === undefined) {
                 if (playerMove(availableMoves, clickedItem)) {
-                    console.log(checkWin(playerMoves, aiMoves, availableMoves));
-
                     //Update the board
                     updateBoard();
 
@@ -76,9 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             spread: 180,
                             particleCount: 150
                         });
-                    };
+                    }
                     if (currentWinEffectString == "Sound" || currentWinEffectString == "Both") {
-                        winSound.play()
+                        winSound.play();
                     }
                 } else if (checkWin(playerMoves, aiMoves, availableMoves) === "loss") {
                     ++losses;
@@ -122,10 +120,8 @@ document.addEventListener("DOMContentLoaded", function () {
  * and returns true. Otherwise undefined.
  */
 function playerMove(availableMoves, move) {
-    console.log(availableMoves);
     if (availableMoves.includes(move)) {
         playerMoves.push(move);
-        console.log(playerMoves);
         return true;
     }
 }
@@ -173,8 +169,6 @@ function updateBoard() {
     document.getElementById("wins").innerText = wins;
     document.getElementById("losses").innerText = losses;
     document.getElementById("draws").innerText = draws;
-
-    console.log("The updateboard function has been run");
 }
 
 /**
@@ -194,7 +188,6 @@ function findPossiblePlayerWin(possibleMoves) {
         let tempPlayerMoves = [...playerMoves];
         tempPlayerMoves.push(move);
         if (checkWin(tempPlayerMoves, aiMoves, possibleMoves) == "win") {
-            console.log(`Found possible player win: ${move}`);
             return move;
         }
     }
@@ -209,7 +202,6 @@ function findPossibleAiWin(possibleMoves) {
         let tempAiMoves = [...aiMoves];
         tempAiMoves.push(move);
         if (checkWin(playerMoves, tempAiMoves, possibleMoves) == "loss") {
-            console.log(`Found possible ai win: ${move}`);
             return move;
         }
     }
@@ -225,7 +217,6 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
     let move;
     //If the difficulty is not extremely easy the ai will look for potential wins, both player and ai vice 
     if (currentDiff != "Extremely easy") {
-        console.log("Difficulty is not extremely easy")
         //Checks if the checkers outputted a number
         if (possibleAiWin != undefined) {
             return possibleAiWin;
@@ -262,7 +253,6 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
     //In the event that a move is not found in the other checkers, the ai will pick the first available spot
     move = availableMoves[0];
     aiMoves.push(move);
-    console.log(aiMoves);
     return move;
 
 }
@@ -274,18 +264,14 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
 function playerPlaceCornerCounter(possibleMoves, recentPlayerMove, difficulty) {
     //Start by checking if middle is available
     if (corners.includes(recentPlayerMove)) {
-        console.log("Player placed corner")
         if (possibleMoves.includes(5)) {
             return 5;
         } else {
             //If possible, place the O 3 squares in front of the player move 
-            console.log("Middle not available")
             if (possibleMoves.includes(recentPlayerMove + 3)) {
-                console.log("Player move + 3")
                 return recentPlayerMove + 3;
                 //Else, if possible place the O 3 squares behind the player move 
             } else if (possibleMoves.includes(recentPlayerMove - 3)) {
-                console.log("Player move - 3")
                 return recentPlayerMove - 3;
             } else {
                 if (difficulty != "Medium") {
@@ -350,8 +336,6 @@ function changeTheme() {
         newTheme = themes[0];
     }
 
-    console.log(`Switching from ${oldTheme} to ${newTheme}`)
-
     //Switches the color theme related classname on all 4 elements
     document.querySelector("body").classList.replace(oldTheme, newTheme);
     document.querySelector("header").classList.replace(oldTheme, newTheme);
@@ -363,7 +347,7 @@ function changeTheme() {
     if (currentTheme == (themes.length - 1)) {
         currentTheme = 0;
     } else {
-        ++currentTheme
+        ++currentTheme;
     }
 }
 
