@@ -252,6 +252,11 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
         if (move != undefined) {
             return move;
         }
+    //If the difficulty is extremely easy the moves will be completely random
+    } else if (currentDiff == "Easy") {
+        //code credit: https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
+        let move = availableMoves[(Math.floor(Math.random() * availableMoves.length))];
+        return move;
     }
 
     //In the event that a move is not found in the other checkers, the ai will pick the first available spot
