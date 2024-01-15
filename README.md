@@ -120,20 +120,46 @@ Explaination: The undefined variable "confetti" is a function coming from anothe
 </details>
 <br>
 
-
 **Wave accessibility**
+
+
+<details><summary>Main page</summary>
+<img src="documentation\validation\wave_index.png">
+</details>
+
+<details><summary>Customizeable TicTacToe</summary>
+<img src="documentation\validation\wave_custom.png">
+</details>
 <br>
 
 **Lighthouse performance**
+
+<details><summary>Main page</summary>
+<img src="documentation\validation\lighthouse_index.png">
+</details>
+
+<details><summary>Customizeable TicTacToe</summary>
+<img src="documentation\validation\lighthouse_custom.png">
+</details>
 <br>
 
 **Other tests**
 <br>
 
 **Browsers tested**
+
+
+- Firefox
+- Chrome
+- In theory any chromium based browser should work, such as edge, brave, newer versions of opera etc. 
+
 <br>
 
 **Testing Devices**
+
+- Desktop pc (modified prebuild), 16GB RAM, i5-9400F
+- Nothing Phone 2
+
 <br>
 
 **Testing user stories**
