@@ -1,3 +1,5 @@
+//Backup script in case something breaks after removing functions
+
 // Global variables
 //What page the script is running on
 let currentPage;
@@ -186,6 +188,60 @@ function reset() {
 }
 
 /**
+ * Called when the AI should make a move
+ */
+/*
+function aiMove(availableMoves, recentPlayerMove, currentDiff) {
+    //Gets the results from the checkers
+    let possibleAiWin = findPossibleAiWin(availableMoves);
+    let possiblePlayerWin = findPossiblePlayerWin(availableMoves);
+
+    //Determines the current difficulty
+    let currDiff = currentDiff;
+
+    console.log(`Current difficulty ${currDiff}`)
+
+    //If the difficulty is not extremely easy this will run
+    if (currDiff != "Extremely easy") {
+        console.log("Difficulty is not extremely easy")
+        //Checks if the checkers outputted a number
+        if (possibleAiWin != undefined) {
+            return possibleAiWin;
+        } else if (possiblePlayerWin != undefined) {
+            return possiblePlayerWin;
+        }
+
+        //if the current difficulty is impossible, hard or medium this will run
+        if (currDiff == "Impossible" || currDiff == "Hard" || currDiff == "Medium") {
+            let ratTacticsTest = ratTacticsDetection(availableMoves, recentPlayerMove, currDiff);
+            console.log("difficulty is not easy")
+            if (ratTacticsTest != undefined) {
+                return ratTacticsTest;
+            }
+        }
+
+        //Ai always picks middle if it's available to prevent the player from winning. Only runs if the difficulty is not easy
+        if (availableMoves.includes(5) && currDiff != "Easy") {
+            console.log("difficulty is not easy")
+            return 5;
+        }
+    }
+
+    //If the difficulty is extremely easy the moves will be completely random
+    if (currDiff == "Extremely easy") {
+        //code credit: https://www.geeksforgeeks.org/how-to-select-a-random-element-from-array-in-javascript/
+        let move = availableMoves[(Math.floor(Math.random() * availableMoves.length))];
+        return move;
+    }
+    //In the event that a move is not found in the other checkers, the ai will pick the first available spot
+    let move = availableMoves[0];
+    aiMoves.push(move);
+    console.log(aiMoves);
+    return move;
+
+}*/
+
+/**
  * Find a possible player win and put the O in there
  * checks through all the possible moves the player can make
  */
@@ -216,8 +272,48 @@ function findPossibleAiWin(possibleMoves) {
 }
 
 /**
- * Called when the AI should make a move
+ * Detect tactics from the player that almost always guarantees a win. 
+ * The amount of tactics checked depends on difficulty
  */
+/*
+function ratTacticsDetection(possibleMoves, recentPlayerMove, difficulty) {
+    //If the player places their X in a corner put the O in the middle if possible
+    if (corners.includes(recentPlayerMove)) {
+        if (possibleMoves.includes(5)) {
+            return 5;
+        } else {
+            //Check if the third square from the player move is available, then put the O in there
+            if (possibleMoves.includes(recentPlayerMove + 3) && difficulty == "Impossible") {
+                console.log("difficulty is impossible corers +")
+                return recentPlayerMove + 3;
+            } else if (possibleMoves.includes(recentPlayerMove - 3) && difficulty == "Impossible") {
+                console.log("difficulty is impossible corners -")
+                return recentPlayerMove - 3;
+            }
+            //If not possible, put on the sides
+            if (difficulty != "Medium") {
+                console.log("difficulty is not medium")
+                for (let i of sides) {
+                    if (possibleMoves.includes(i)) {
+                        return i;
+                    }
+                }
+            }
+        }
+    }
+    //If the player has put their X on the sides, put the O on the 3rd square away. 
+    //Results in a corner when the right or left side is taken, middle if the top is taken. 
+    //Otherwise it defaults to the middle due to the code in the aiMove function
+    if (sides.includes(recentPlayerMove) && difficulty == "Impossible") {
+        console.log("difficulty is impossible sides")
+        if (possibleMoves.includes(recentPlayerMove + 3)) {
+            return recentPlayerMove + 3;
+        } else if (possibleMoves.includes(recentPlayerMove + 1)) {
+            console.log(recentPlayerMove + 1)
+            return recentPlayerMove + 1
+        }
+    }
+}*/
 
 function aiMove(availableMoves, recentPlayerMove, currentDiff) {
     let possibleAiWin = findPossibleAiWin(availableMoves);
@@ -235,7 +331,7 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
     }
     //Checks for difficulty
     if (currentDiff == "Impossible") {
-        if (recentPlayerMove == 5) {
+        if(recentPlayerMove == 5){
             return 9;
         }
         move = playerPlaceCornerCounter(availableMoves, recentPlayerMove, currentDiff);
@@ -252,19 +348,18 @@ function aiMove(availableMoves, recentPlayerMove, currentDiff) {
         if (move != undefined) {
             return move;
         }
+
+        //In the event that a move is not found in the other checkers, the ai will pick the first available spot
+        move = availableMoves[0];
+        aiMoves.push(move);
+        console.log(aiMoves);
+        return move;
     }
-
-    //In the event that a move is not found in the other checkers, the ai will pick the first available spot
-    move = availableMoves[0];
-    aiMoves.push(move);
-    console.log(aiMoves);
-    return move;
-
 }
 
 
 /**
- * If the player puts their move on one of the corners this will run
+ * If the player puts their move on one of the corners the ai will place 3 squares from the recent player move if available
  */
 function playerPlaceCornerCounter(possibleMoves, recentPlayerMove, difficulty) {
     //Start by checking if middle is available
@@ -296,31 +391,26 @@ function playerPlaceCornerCounter(possibleMoves, recentPlayerMove, difficulty) {
     }
 }
 
-/**
- * If the player places their move on the side, this will run
- */
 function playerPlaceSidesCounter(possibleMoves, recentPlayerMove) {
-    //If the ai can, it will place it's move 3 in front of the players recent move
-    //Else if the ai can, it places it's move 3 behind the players recent move
-    //If not possible it does the same, but 1 instead of 3
     if (possibleMoves.includes(recentPlayerMove + 3)) {
         return recentPlayerMove + 3;
     } else if (possibleMoves.includes(recentPlayerMove - 3)) {
         return recentPlayerMove - 3;
     } else if (possibleMoves.includes(recentPlayerMove + 1)) {
+
         return recentPlayerMove + 1;
     } else if (possibleMoves.includes(recentPlayerMove - 1)) {
+
         return recentPlayerMove - 1;
     }
 
 }
 
 /**
- * Checks in anyone has won. Returns undefined if no one has won
+ * Checks in anyone has won. returns 0 if the human has won, 1 if the ai won, undefined if no one has won
  */
 function checkWin(player, ai, availableMoves) {
-    //Checks if the moves the player/ai has made matches one of the winning combinations by checking if the first
-    //number in the nested list is found in the ai/player moves list. Ditto for the second and third.
+
     for (let combo of combinations) {
         if (availableMoves.length === 0) {
             return "draw";

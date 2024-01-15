@@ -65,6 +65,7 @@ Below are bugs that occured in the new script. Halfway through I scrapped the wh
 | The ai doesn't behave with the difficulty it's supposed to after implementing difficulties | Some of the comparisons for difficulty if statements were not capitalized and therefor did not run |
 | Difficulty is undefined on the main page | Make the currentDifficultyString = "Impossible" by default|
 | Script throws an error on the main page about not being able to find certain elements | Add a variable identifying which page the script is running on |
+| Ai stops making a move in certain situations after player has placed their move on the sides | Fixed an uncaught mistake where the backup move code block was inside the else if statement that only runs on medium and hard modes | 
 
 
 ## Technologies and tools
