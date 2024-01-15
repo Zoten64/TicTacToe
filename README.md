@@ -18,10 +18,24 @@
 
 ## Goals and target audience
 
-The goal of the project is to make an unbeatable TicTacToe ai as well as have a separate site with added functionality and advanced options including difficulty.
+The goal of the project is to make an unbeatable TicTacToe ai as well as have a separate site with added functionality and advanced options including difficulty, color theme and win effects. The goal of the project was to learn javascript, and I feel like I did learn a lot.
 
 ## Design
 
+The design is simple and easy to navigate. It features a simple header, grid and a clear button as well as a link to the customizeable site.
+
+
+<img src="documentation\other\design_index.png">
+
+<br>
+
+The customizeable page is just as simple, only adding 3 more buttons added that flips through options for the different settings
+
+
+<img src="documentation\other\design_custom.png">
+
+
+Both pages have very simple hover effects on the buttons, simply making them enlarge slightly on hover
 
 ## User stories
 
@@ -35,6 +49,7 @@ The goal of the project is to make an unbeatable TicTacToe ai as well as have a 
 8. As a player I want to have fun playing 
 
 ## Features
+
 
 
 ## Bugs and fixes
@@ -157,8 +172,12 @@ Explaination: The undefined variable "confetti" is a function coming from anothe
 
 **Testing Devices**
 
+
 - Desktop pc (modified prebuild), 16GB RAM, i5-9400F
 - Nothing Phone 2
+- Microsoft surface pro
+- HP probook
+
 
 <br>
 
