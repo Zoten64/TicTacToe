@@ -93,7 +93,12 @@ Below are bugs that occured in the new script. Halfway through I scrapped the wh
 
 ## Validation and testing
 **HTML**
-
+<details><summary>Index</summary>
+<img src="documentation/validation/html_index.png">
+</details>
+<details><summary>Index</summary>
+<img src="documentation/validation/html_custom.png">
+</details>
 
 **CSS**
 
