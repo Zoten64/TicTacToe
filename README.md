@@ -56,10 +56,16 @@ The color schemes of the second page are taken from [happy hues](https://www.hap
 
 As stated above, the page has a very simple and minimalistic design in order to be easily understandable and accessible. It is made with semantic html in mind, featuring a header, main element and a footer. There are no unnecessary elements to distract from the main focus. The page is also fully responsive so the game is playable on both mobile and pc.
 
+<img src="documentation\other\design_index.png">
+<img src="documentation\other\design_custom.png">
+
 <br>
 User stories covered: 2, 3, 4, 5
 
 **AI player**
+
+
+<img src="documentation\other\tictactoe_ai.gif">
 
 
 The O player is made up by a few functions that detect potential wins and losses to force the player into a draw if it is unable to win.
@@ -71,6 +77,8 @@ User stories covered: 1, 6
 
 **Tally counter**
 
+<img src="documentation\other\tally_counter.png">
+
 The tally counter keeps track of wins, draws and losses. It is clearly labeled as such.
 
 <br>
@@ -79,6 +87,9 @@ User stories covered: 1
 <br> 
 
 **Clear button**
+
+
+<img src="documentation\other\tictactoe_clear.gif">
 
 
 The clear button clears the entire board by resetting all relevant variables and changing the grid item divs to "", aka empty. It is big and very clearly visible amking it easy to understand what the purpose is
@@ -90,6 +101,7 @@ User stories covered: 1
 
 **Customizeable page**
 
+<img src="documentation\other\custom_page_buttons.png">
 
 The customizeable page features 3 extra buttons that allows for customizeability, including difficulty, color theme and win effect. See below for more. All 3 buttons works by cycling between the options.
 
@@ -100,6 +112,7 @@ User stories covered: 7
 
 **Difficulty button**
 
+<img src="documentation\other\tictactoe_difficulty.gif">
 
 The difficulty button cycles between 5 different difficulties, Impossible, Hard, Medium, Easy and Extremely easy
 
@@ -111,6 +124,9 @@ User stories covered: 6, 7
 **Color theme button**
 
 
+<img src="documentation\other\tictactoe_color.gif">
+
+
 The difficulty button cycles between 7 different color themes. See gif.
 
 <br>
@@ -119,6 +135,10 @@ User stories covered: 7
 <br>
 
 **Win effect button**
+
+
+<img src="documentation\other\tictactoe_win.gif">
+
 
 The win effect button cycles through 4 different options, None, Confetti, Sound and Both. This effect will play upon a player win. For sound you need to try it out yourself [here](https://zoten64.github.io/TicTacToe/custom_tictactoe.html)
 
