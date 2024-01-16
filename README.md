@@ -48,7 +48,6 @@ The color schemes of the second page are taken from [happy hues](https://www.hap
 5. As a visually impaired user I want the website to be accessible so that I can also play
 6. As a player I want difficulty settings
 7. As a player I want customizeability
-8. As a player I want to have fun playing 
 
 ## Features
 
@@ -135,6 +134,8 @@ Below are bugs that occured in the new script. Halfway through I scrapped the wh
 
 <details><summary>javascript</summary>
 <img src="documentation\validation\javascript_validation.png">
+
+
 Explaination: The undefined variable "confetti" is a function coming from another script. [Credits to the script here](#credits)
 </details>
 <br>
@@ -186,6 +187,53 @@ Explaination: The undefined variable "confetti" is a function coming from anothe
 <br>
 
 **Testing user stories**
+
+1. As a player I want to play a tic tac toe game against an ai so that I can challenge myself
+
+| Feature  | Action | Expected results | Actual results |
+| ------------- | ------------- | ------------- | ------------- |
+| Player O is an AI | Play the game | The AI will play against the player | Works as expected |
+
+2. As a player I want the game to have a nice layout that is easy to understand
+
+| Feature  | Action | Expected results | Actual results |
+| ------------- | ------------- | ------------- | ------------- |
+| A very simple layout featuring only the board and at most 4 buttons | Go onto the site | A simple layout that works across devices | Works as expected |
+
+3. As a mobile user I want the website to be optimized for mobile to make it easier to navigate
+
+| Feature  | Action | Expected results | Actual results |
+| ------------- | ------------- | ------------- | ------------- |
+| Responsive design for mobile | Visit the site on mobile | A website suitable for mobile | Works as expected |
+
+4. As a desktop user I want the website to be optimized for desktop to make it easier to navigate
+
+| Feature  | Action | Expected results | Actual results |
+| ------------- | ------------- | ------------- | ------------- |
+| Responsive design for desktop | Visit the site on a pc | A website suitable for PCs | Works as expected |
+
+5. As a visually impaired user I want the website to be accessible so that I can also play
+
+| Feature  | Action | Expected results | Actual results |
+| ------------- | ------------- | ------------- | ------------- |
+| Semantic makeup of the html and high contrast | Visit the site | A website that is simple and accessible | Works as expected |
+
+6. As a player I want difficulty settings
+
+| Feature  | Action | Expected results | Actual results |
+| ------------- | ------------- | ------------- | ------------- |
+| Difficulty settings on the customizeable TicTacToe page | From the main page, scroll to the footer and click the link. Press the "Difficulty" button to change the difficulty | The button changes the way the AI plays depending on the set difficulty | Works as expected |
+
+7. As a player I want customizeability
+
+| Feature  | Action | Expected results | Actual results |
+| ------------- | ------------- | ------------- | ------------- |
+| Second 'customizeable tictactoe" page | From the footer, click the link | A website with 3 different settings | Works as expected |
+| Difficulty setting| On the customizeable page, press the "Difficulty" button to change the difficulty | The button changes the way the AI plays depending on the set difficulty | Works as expected |
+| Color Theme changer | On the customizeable page, press the "color Theme" button to change the color theme | The button should change the color theme | Works as expected |
+| Win effect changer | On the customizeable page, press the "Win effect" button to change the Win effect | Depending on the setting it should deploy nothing, confetti, play a sound or both when the player wins | Works as expected |
+
+
 <br>
 
 ## Deployment
