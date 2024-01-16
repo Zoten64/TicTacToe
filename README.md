@@ -37,6 +37,8 @@ The customizeable page is just as simple, only adding 3 more buttons added that 
 
 Both pages have very simple hover effects on the buttons, simply making them enlarge slightly on hover
 
+The color schemes of the second page are taken from [happy hues](https://www.happyhues.co/palettes/9)
+
 ## User stories
 
 1. As a player I want to play a tic tac toe game against an ai so that I can challenge myself
@@ -95,6 +97,8 @@ Below are bugs that occured in the new script. Halfway through I scrapped the wh
 - Figma
 - Firefox dev tools
 - Chrome dev tools (Briefly)
+- Happy hues
+- Confetti Canvas
 
 
 ## Wireframes
