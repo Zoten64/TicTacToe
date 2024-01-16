@@ -25,7 +25,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
-
+<!--The light-monochrome class is a placeholder that will be changed through javascript to change the color themes by changing the color variables. 
+    See CSS for the other themes. This applies to all instances of the class-->
 <body class="light-monochrome">
     <!--Used by the script to identify which page it's currently running on-->
     <div id="current-page">Index</div>
@@ -68,16 +69,19 @@
                     </div>
                 </div>
             </div>
+            <!--The score counter. The numbers will be changed dynamically by the javascript-->
             <div id="score">
                 <p>Wins: <span id="wins"> 0 </span></p>
                 <p>Draws: <span id="draws"> 0 </span></p>
                 <p>Losses: <span id="losses"> 0 </span></p>
             </div>
+            <!--Clear button clears the board-->
             <button id="clear">
                 Clear
             </button>
         </div>
     </main>
+    <!--Link to the customizeable page-->
     <footer class="light-monochrome">
         <p>Bored? Try the <a href="custom_tictactoe.html">customizeable version</a></p>
     </footer>

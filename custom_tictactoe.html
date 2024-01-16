@@ -26,9 +26,13 @@
 
 </head>
 
+
+<!--The light-monochrome class is a placeholder that will be changed through javascript to change the color themes by changing the color variables. 
+    See CSS for the other themes. This applies to all instances of the class-->
 <body class="light-monochrome">
-    <!--Used by the script to identify which page it's currently running on-->
+    <!--Used by the script to identify which page it's currently running on. Hidden by CSS-->
     <div id="current-page">Custom</div>
+    <!--Heading-->
     <header class="light-monochrome">
         <h1>Customizeable TicTacToe</h1>
         <h2>You might just win</h2>
@@ -69,15 +73,18 @@
                     </div>
                 </div>
             </div>
+            <!--The score counter. The numbers will be changed dynamically by the javascript-->
             <div id="score">
                 <p>Wins: <span id="wins"> 0 </span></p>
                 <p>Draws: <span id="draws"> 0 </span></p>
                 <p>Losses: <span id="losses"> 0 </span></p>
             </div>
+            <!--Clear button clears the board-->
             <button id="clear">
                 Clear
             </button>
         </div>
+        <!--A container for different options the player can set -->
         <div id="options">
             <div id="difficulty">
                 <h2>Difficulty</h2>
@@ -93,6 +100,7 @@
             </div>
         </div>
     </main>
+    <!--Link back to the main page-->
     <footer class="light-monochrome">
         <p>Back to the <a href="index.html">main page</a></p>
     </footer>
