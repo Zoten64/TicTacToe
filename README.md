@@ -1,6 +1,8 @@
 # Tic Tac Toe
 **Impossible base game and an extra customizeable page**
 
+<img src="documentation/other/thumbnail.png">
+
 ## [Link to website](https://zoten64.github.io/TicTacToe/)
 
 ## Table of Contents:
