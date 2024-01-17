@@ -40,31 +40,31 @@
                 <!--Each grid item represents a square. Classes used to remove borders on some sides. 
                 grid-number = the number of the grid square. Will be used in JS later to determine which square has been pressed-->
                 <div id="game-grid">
-                    <div data-grid-number="1" class="game-grid-item no-top-border no-left-border">
+                    <div data-grid-number="1" class="game-grid-item no-top-border no-left-border" tabindex="1">
                         <p></p>
                     </div>
-                    <div data-grid-number="2" class="game-grid-item no-top-border">
+                    <div data-grid-number="2" class="game-grid-item no-top-border" tabindex="2">
                         <p></p>
                     </div>
-                    <div data-grid-number="3" class="game-grid-item no-top-border no-right-border">
+                    <div data-grid-number="3" class="game-grid-item no-top-border no-right-border" tabindex="3">
                         <p></p>
                     </div>
-                    <div data-grid-number="4" class="game-grid-item no-left-border">
+                    <div data-grid-number="4" class="game-grid-item no-left-border" tabindex="4">
                         <p></p>
                     </div>
-                    <div data-grid-number="5" class="game-grid-item">
+                    <div data-grid-number="5" class="game-grid-item" tabindex="5">
                         <p></p>
                     </div>
-                    <div data-grid-number="6" class="game-grid-item no-right-border">
+                    <div data-grid-number="6" class="game-grid-item no-right-border" tabindex="6">
                         <p></p>
                     </div>
-                    <div data-grid-number="7" class="game-grid-item no-left-border no-bottom-border">
+                    <div data-grid-number="7" class="game-grid-item no-left-border no-bottom-border" tabindex="7">
                         <p></p>
                     </div>
-                    <div data-grid-number="8" class="game-grid-item no-bottom-border">
+                    <div data-grid-number="8" class="game-grid-item no-bottom-border" tabindex="8">
                         <p></p>
                     </div>
-                    <div data-grid-number="9" class="game-grid-item no-bottom-border no-right-border">
+                    <div data-grid-number="9" class="game-grid-item no-bottom-border no-right-border" tabindex="9">
                         <p></p>
                     </div>
                 </div>
@@ -76,14 +76,14 @@
                 <p>Losses: <span id="losses"> 0 </span></p>
             </div>
             <!--Clear button clears the board-->
-            <button id="clear">
+            <button id="clear" tabindex="10">
                 Clear
             </button>
         </div>
     </main>
     <!--Link to the customizeable page-->
     <footer class="light-monochrome">
-        <p>Bored? Try the <a href="custom_tictactoe.html">customizeable version</a></p>
+        <p>Bored? Try the <a href="custom_tictactoe.html" tabindex="11">customizeable version</a></p>
     </footer>
 
     <!--Script placed at the bottom to load at the end to make sure all components load before the script.-->

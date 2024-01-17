@@ -26,6 +26,7 @@ The design is simple and easy to navigate. It features a simple header, grid and
 
 
 <img src="documentation\other\design_index.png">
+<img src="documentation\other\design_index_mobile.png">
 
 <br>
 
@@ -33,6 +34,8 @@ The customizeable page is just as simple, only adding 3 more buttons added that 
 
 
 <img src="documentation\other\design_custom.png">
+<img src="documentation\other\design_custom_mobile.png">
+
 
 
 Both pages have very simple hover effects on the buttons, simply making them enlarge slightly on hover
@@ -288,11 +291,27 @@ Explaination: The undefined variable "confetti" is a function coming from anothe
 | ------------- | ------------- | ------------- | ------------- |
 | Player O is an AI | Play the game | The AI will play against the player | Works as expected |
 
+<details>
+<summary>Screenshots</summary>
+<img src="documentation\user_stories\1.png">
+</details>
+
+<br>
+
 2. As a player I want the game to have a nice layout that is easy to understand
 
 | Feature  | Action | Expected results | Actual results |
 | ------------- | ------------- | ------------- | ------------- |
 | A very simple layout featuring only the board and at most 4 buttons | Go onto the site | A simple layout that works across devices | Works as expected |
+
+<details>
+<summary>Screenshots</summary>
+The design is simple
+<img src="documentation\other\design_index.png">
+<img src="documentation\other\design_custom.png">
+</details>
+
+<br>
 
 3. As a mobile user I want the website to be optimized for mobile to make it easier to navigate
 
@@ -300,11 +319,30 @@ Explaination: The undefined variable "confetti" is a function coming from anothe
 | ------------- | ------------- | ------------- | ------------- |
 | Responsive design for mobile | Visit the site on mobile | A website suitable for mobile | Works as expected |
 
+<details>
+<summary>Screenshots</summary>
+The website is responsive and works on mobile
+<img src="documentation\other\design_index_mobile.png">
+<img src="documentation\other\design_custom_mobile.png">
+</details>
+
+<br>
+
 4. As a desktop user I want the website to be optimized for desktop to make it easier to navigate
 
 | Feature  | Action | Expected results | Actual results |
 | ------------- | ------------- | ------------- | ------------- |
 | Responsive design for desktop | Visit the site on a pc | A website suitable for PCs | Works as expected |
+
+<details>
+<summary>Screenshots</summary>
+The website is responsive and works on pc
+<img src="documentation\other\design_index.png">
+<img src="documentation\other\design_custom.png">
+</details>
+
+
+<br>
 
 5. As a visually impaired user I want the website to be accessible so that I can also play
 
@@ -312,11 +350,30 @@ Explaination: The undefined variable "confetti" is a function coming from anothe
 | ------------- | ------------- | ------------- | ------------- |
 | Semantic makeup of the html and high contrast | Visit the site | A website that is simple and accessible | Works as expected |
 
+<details>
+<summary>Screenshots</summary>
+The website passes WAVE validation without errors
+<img src="documentation\validation\index_custom.png">
+<img src="documentation\validation\wave_custom.png">
+
+Tab order is also as expected on both pages
+<img src="documentation\validation\tab_order.png">
+</details>
+
+<br>
+
 6. As a player I want difficulty settings
 
 | Feature  | Action | Expected results | Actual results |
 | ------------- | ------------- | ------------- | ------------- |
 | Difficulty settings on the customizeable TicTacToe page | From the main page, scroll to the footer and click the link. Press the "Difficulty" button to change the difficulty | The button changes the way the AI plays depending on the set difficulty | Works as expected |
+
+<details>
+<summary>Screenshots</summary>
+<img src="documentation\user_stories\1.png">
+</details>
+
+<br>
 
 7. As a player I want customizeability
 
@@ -326,6 +383,13 @@ Explaination: The undefined variable "confetti" is a function coming from anothe
 | Difficulty setting| On the customizeable page, press the "Difficulty" button to change the difficulty | The button changes the way the AI plays depending on the set difficulty | Works as expected |
 | Color Theme changer | On the customizeable page, press the "color Theme" button to change the color theme | The button should change the color theme | Works as expected |
 | Win effect changer | On the customizeable page, press the "Win effect" button to change the Win effect | Depending on the setting it should deploy nothing, confetti, play a sound or both when the player wins | Works as expected |
+
+<details>
+<summary>Screenshots</summary>
+<img src="documentation\user_stories\1.png">
+</details>
+
+<br>
 
 
 <br>
