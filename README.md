@@ -307,6 +307,8 @@ Explaination: The undefined variable "confetti" is a function coming from anothe
 <details>
 <summary>Screenshots</summary>
 The design is simple
+
+
 <img src="documentation\other\design_index.png">
 <img src="documentation\other\design_custom.png">
 </details>
@@ -322,6 +324,8 @@ The design is simple
 <details>
 <summary>Screenshots</summary>
 The website is responsive and works on mobile
+
+
 <img src="documentation\other\design_index_mobile.png">
 <img src="documentation\other\design_custom_mobile.png">
 </details>
@@ -337,6 +341,8 @@ The website is responsive and works on mobile
 <details>
 <summary>Screenshots</summary>
 The website is responsive and works on pc
+
+
 <img src="documentation\other\design_index.png">
 <img src="documentation\other\design_custom.png">
 </details>
@@ -352,11 +358,18 @@ The website is responsive and works on pc
 
 <details>
 <summary>Screenshots</summary>
+
+
 The website passes WAVE validation without errors
-<img src="documentation\validation\index_custom.png">
+
+
+<img src="documentation\validation\wave_index.png">
 <img src="documentation\validation\wave_custom.png">
 
+
 Tab order is also as expected on both pages
+
+
 <img src="documentation\validation\tab_order.png">
 </details>
 
@@ -370,7 +383,7 @@ Tab order is also as expected on both pages
 
 <details>
 <summary>Screenshots</summary>
-<img src="documentation\user_stories\1.png">
+<img src="documentation\user_stories\6.png">
 </details>
 
 <br>
@@ -386,7 +399,7 @@ Tab order is also as expected on both pages
 
 <details>
 <summary>Screenshots</summary>
-<img src="documentation\user_stories\1.png">
+<img src="documentation\user_stories\7.png">
 </details>
 
 <br>
