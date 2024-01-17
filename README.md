@@ -202,10 +202,10 @@ Below are bugs that occured in the new script. Halfway through I scrapped the wh
 ## Wireframes
 
 <details><summary>Impossible TicTacToe</summary>
-<img src="documentation/wireframes/Impossible_tictactoe.png">
+<img src="documentation\wireframes\Impossible_tictactoe.png">
 </details>
 <details><summary>Customizeable TicTacToe</summary>
-<img src="documentation/wireframes/customizeable_tictactoe.png">
+<img src="documentation\wireframes\customizeable_tictactoe.png">
 </details>
 
 ## Validation and testing
@@ -327,7 +327,7 @@ The design is simple
 <summary>Screenshots</summary>
 The website is responsive and works on mobile
 
-
+<br>
 <img src="documentation\other\design_index_mobile.png">
 <img src="documentation\other\design_custom_mobile.png">
 </details>
